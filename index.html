@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESME Cairo | Recruitment 2027 Secure Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --esme-navy: #032F57;
+            --esme-navy-dark: #021f3a;
+            --esme-orange: #E07220;
+            --esme-orange-hover: #c55f15;
+            --esme-gray: #D9D9D9;
+            --esme-light: #F4F6F9;
+            --esme-white: #FFFFFF;
+            --status-accepted: #10B981;
+            --status-rejected: #EF4444;
+            --status-waiting: #F59E0B;
+            --status-hold: #6B7280;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cairo', 'Roboto', sans-serif;
+            background-color: var(--esme-light);
+            color: #1E293B;
+            line-height: 1.6;
+        }
+
+        /* LOGIN OVERLAY SCREEN */
+        #authScreen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, var(--esme-navy) 0%, var(--esme-navy-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5000;
+            padding: 1.5rem;
+        }
+
+        .auth-card {
+            background: var(--esme-white);
+            max-width: 460px;
+            width: 100%;
+            border-radius: 16px;
+            padding: 2.2rem 2rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+            border-top: 6px solid var(--esme-orange);
+            text-align: center;
+        }
+
+        .auth-logo {
+            height: 60px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+
+        .auth-card h2 {
+            color: var(--esme-navy);
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            font-weight: 800;
+        }
+
+        .auth-card p {
+            color: #64748B;
+            font-size: 0.88rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--esme-navy) 0%, var(--esme-navy-dark) 100%);
+            color: var(--esme-white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--esme-orange);
+            box-shadow: 0 4px 15px rgba(3, 47, 87, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-section { display: flex; align-items: center; gap: 15px; }
+        .logo-box {
+            background: var(--esme-white);
+            padding: 6px 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-box img { height: 42px; width: auto; object-fit: contain; }
+        .logo-fallback {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 900;
+            font-size: 1.6rem;
+            color: var(--esme-navy);
+        }
+        .logo-fallback span { color: var(--esme-orange); }
+        .brand-titles h1 { font-size: 1.3rem; font-weight: 800; font-family: 'Roboto', sans-serif; }
+        .brand-titles p { font-size: 0.78rem; color: var(--esme-gray); font-family: 'Roboto', sans-serif; text-transform: uppercase; }
+
+        .user-info-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slogan-badge {
+            background: rgba(224, 114, 32, 0.18);
+            border: 1px solid var(--esme-orange);
+            color: var(--esme-orange);
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .container { max-width: 1480px; margin: 1.8rem auto; padding: 0 1.2rem; display: none; }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-card {
+            background: var(--esme-white);
+            border-radius: 12px;
+            padding: 1.2rem 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border-right: 5px solid var(--esme-navy);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .stat-card:hover { transform: translateY(-3px); }
+        .stat-card.accepted { border-right-color: var(--status-accepted); }
+        .stat-card.waiting { border-right-color: var(--status-waiting); }
+        .stat-card.rejected { border-right-color: var(--status-rejected); }
+        .stat-card.hold { border-right-color: var(--status-hold); }
+        .stat-info h3 { font-size: 0.88rem; color: #64748B; font-weight: 700; }
+        .stat-info .number { font-size: 2rem; font-weight: 900; color: var(--esme-navy); font-family: 'Roboto', sans-serif; }
+        .stat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+        .stat-card.total .stat-icon { background: rgba(3, 47, 87, 0.1); color: var(--esme-navy); }
+        .stat-card.accepted .stat-icon { background: rgba(16, 185, 129, 0.12); color: var(--status-accepted); }
+        .stat-card.waiting .stat-icon { background: rgba(245, 158, 11, 0.12); color: var(--status-waiting); }
+        .stat-card.rejected .stat-icon { background: rgba(239, 68, 68, 0.12); color: var(--status-rejected); }
+        .stat-card.hold .stat-icon { background: rgba(107, 114, 128, 0.12); color: var(--status-hold); }
+
+        /* Controls */
+        .top-controls {
+            background: var(--esme-white);
+            padding: 1.1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            margin-bottom: 1.4rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tabs { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .tab-btn {
+            padding: 0.65rem 1.2rem;
+            border: 1px solid var(--esme-gray);
+            background: var(--esme-white);
+            color: var(--esme-navy);
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-btn.active, .tab-btn:hover { background: var(--esme-navy); color: var(--esme-white); border-color: var(--esme-navy); }
+        .action-buttons { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .btn {
+            padding: 0.6rem 1.1rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 0.86rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-orange { background: var(--esme-orange); color: var(--esme-white); }
+        .btn-orange:hover { background: var(--esme-orange-hover); }
+        .btn-navy { background: var(--esme-navy); color: var(--esme-white); }
+        .btn-navy:hover { background: var(--esme-navy-dark); }
+        .btn-success { background: var(--status-accepted); color: var(--esme-white); }
+        .btn-danger { background: var(--status-rejected); color: var(--esme-white); }
+        .btn-outline { background: transparent; border: 1px solid var(--esme-navy); color: var(--esme-navy); }
+        .btn-outline:hover { background: var(--esme-navy); color: var(--esme-white); }
+
+        /* Filters & Table */
+        .filters-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            margin-bottom: 1.2rem;
+            background: var(--esme-white);
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            align-items: center;
+        }
+        .search-box { flex: 1; min-width: 240px; position: relative; }
+        .search-box i { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #94A3B8; }
+        .search-box input {
+            width: 100%;
+            padding: 0.65rem 2.5rem 0.65rem 1rem;
+            border: 1px solid var(--esme-gray);
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+        }
+        .filter-select {
+            padding: 0.65rem 1rem;
+            border: 1px solid var(--esme-gray);
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            color: var(--esme-navy);
+        }
+
+        .table-card { background: var(--esme-white); border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; }
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: right; }
+        thead { background: var(--esme-navy); color: var(--esme-white); }
+        th { padding: 0.95rem 0.75rem; font-size: 0.84rem; white-space: nowrap; border-bottom: 3px solid var(--esme-orange); }
+        td { padding: 0.8rem 0.75rem; border-bottom: 1px solid #E2E8F0; font-size: 0.86rem; vertical-align: middle; }
+        tbody tr:hover { background-color: #F8FAFC; }
+
+        .candidate-name { font-weight: 700; color: var(--esme-navy); font-family: 'Roboto', 'Cairo', sans-serif; display: block; }
+        .candidate-uni { font-size: 0.75rem; color: #64748B; }
+        .sector-badge {
+            display: inline-block; padding: 2px 8px; border-radius: 5px; font-size: 0.72rem;
+            font-weight: 700; font-family: 'Roboto', sans-serif; background: rgba(3, 47, 87, 0.08); color: var(--esme-navy); margin-bottom: 3px;
+        }
+        .sector-badge.second { background: rgba(224, 114, 32, 0.12); color: var(--esme-orange-hover); }
+        .assigned-select {
+            padding: 5px 8px; border-radius: 6px; border: 1px solid var(--esme-navy);
+            color: var(--esme-navy); font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 0.78rem; direction: ltr;
+        }
+        .score-pill { font-family: 'Roboto', sans-serif; font-weight: 700; padding: 4px 8px; border-radius: 6px; display: inline-block; font-size: 0.8rem; }
+        .score-high { background: #D1FAE5; color: #065F46; }
+        .score-mid { background: #FEF3C7; color: #92400E; }
+        .score-low { background: #FEE2E2; color: #991B1B; }
+        .score-na { background: #F1F5F9; color: #64748B; }
+
+        .status-select { padding: 5px 10px; border-radius: 20px; font-weight: 700; font-size: 0.78rem; cursor: pointer; font-family: 'Roboto', 'Cairo', sans-serif; }
+        .status-select.accepted { background: #D1FAE5; color: #065F46; border: 1px solid #10B981; }
+        .status-select.waiting { background: #FEF3C7; color: #92400E; border: 1px solid #F59E0B; }
+        .status-select.rejected { background: #FEE2E2; color: #991B1B; border: 1px solid #EF4444; }
+        .status-select.hold { background: #E5E7EB; color: #374151; border: 1px solid #9CA3AF; }
+
+        .email-input { padding: 5px 8px; border: 1px solid #CBD5E1; border-radius: 6px; font-family: 'Roboto', sans-serif; font-size: 0.8rem; width: 185px; direction: ltr; }
+        .notes-input { padding: 5px 8px; border: 1px solid transparent; background: transparent; border-radius: 6px; font-family: 'Cairo', sans-serif; font-size: 0.8rem; width: 145px; }
+        .notes-input:hover, .notes-input:focus { border-color: #CBD5E1; background: #fff; outline: none; }
+
+        .icon-btn { width: 32px; height: 32px; border-radius: 6px; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; }
+        .btn-wa { background: #DCFCE7; color: #15803D; }
+        .btn-mail { background: rgba(224, 114, 32, 0.15); color: var(--esme-orange); }
+        .sent-badge { font-size: 0.7rem; background: #DBEAFE; color: #1E40AF; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 3px; }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+        .email-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .groups-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        @media (max-width: 992px) { .email-grid { grid-template-columns: 1fr; } }
+
+        .panel-card { background: var(--esme-white); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 4px solid var(--esme-navy); margin-bottom: 1.5rem; }
+        .panel-card.orange-top { border-top-color: var(--esme-orange); }
+        .panel-card h2 { color: var(--esme-navy); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        .form-group { margin-bottom: 1rem; text-align: right; }
+        .form-group label { display: block; font-weight: 700; font-size: 0.86rem; margin-bottom: 0.35rem; color: var(--esme-navy); }
+        .form-control { width: 100%; padding: 0.65rem 0.8rem; border: 1px solid var(--esme-gray); border-radius: 8px; font-family: 'Roboto', 'Cairo', sans-serif; font-size: 0.9rem; }
+        textarea.form-control { min-height: 240px; resize: vertical; direction: ltr; text-align: left; font-family: 'Roboto', sans-serif; line-height: 1.55; }
+
+        .variable-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; direction: ltr; }
+        .var-tag { background: #F1F5F9; border: 1px dashed var(--esme-navy); color: var(--esme-navy); padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; font-family: 'Roboto', monospace; font-weight: 700; cursor: pointer; }
+        .var-tag:hover { background: var(--esme-orange); border-color: var(--esme-orange); color: #fff; }
+
+        .modal-overlay { position: fixed; inset: 0; background: rgba(3, 47, 87, 0.65); backdrop-filter: blur(3px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
+        .modal-overlay.open { display: flex; }
+        .modal-box { background: var(--esme-white); border-radius: 14px; max-width: 820px; width: 100%; max-height: 92vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.25); border-top: 6px solid var(--esme-orange); padding: 1.5rem; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E2E8F0; padding-bottom: 0.9rem; margin-bottom: 1rem; }
+        .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748B; }
+        .recipient-list { max-height: 220px; overflow-y: auto; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.5rem; margin-bottom: 1rem; background: #F8FAFC; }
+        .recipient-item { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0.75rem; border-bottom: 1px solid #E2E8F0; background: #fff; border-radius: 6px; margin-bottom: 4px; }
+
+        .toast { position: fixed; bottom: 24px; left: 24px; background: var(--esme-navy); color: #fff; padding: 12px 20px; border-radius: 8px; border-right: 4px solid var(--esme-orange); box-shadow: 0 8px 20px rgba(0,0,0,0.2); display: none; z-index: 6000; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <!-- 🔒 SECURE LOGIN OVERLAY -->
+    <div id="authScreen">
+        <div class="auth-card">
+            <img src="ESME_Cairo_Logo_Web.png" alt="ESME Cairo" class="auth-logo" onerror="this.style.display='none'">
+            <h2>ESME Cairo Recruitment Portal</h2>
+            <p>نظام محمي — مخصص فقط لأعضاء البورد والـ Heads المصرح لهم</p>
+
+            <!-- Step 1: Enter Authorized Email -->
+            <div id="authStep1">
+                <div class="form-group">
+                    <label>البريد الإلكتروني المسجل في قائمة الصلاحيات (Authorized Email):</label>
+                    <input type="email" id="loginEmail" class="form-control" dir="ltr" placeholder="name@gmail.com">
+                </div>
+                <button class="btn btn-orange" id="btnSendOtp" style="width: 100%; justify-content: center; padding: 0.8rem;" onclick="requestOTP()">
+                    <i class="fa-solid fa-shield-halved"></i> إرسال رمز التحقق (Send Login Code)
+                </button>
+            </div>
+
+            <!-- Step 2: Enter 6-Digit OTP -->
+            <div id="authStep2" style="display: none;">
+                <div class="form-group">
+                    <label>أدخل الكود المكون من 6 أرقام الذي وصلك على الإيميل:</label>
+                    <input type="text" id="loginOtp" class="form-control" dir="ltr" placeholder="123456" maxlength="6" style="text-align: center; font-size: 1.3rem; letter-spacing: 6px; font-weight: 900;">
+                </div>
+                <button class="btn btn-navy" id="btnVerifyOtp" style="width: 100%; justify-content: center; padding: 0.8rem; margin-bottom: 0.6rem;" onclick="verifyOTP()">
+                    <i class="fa-solid fa-unlock-keyhole"></i> تأكيد الدخول للنظام
+                </button>
+                <button class="btn btn-outline" style="width: 100%; justify-content: center;" onclick="backToStep1()">
+                    تغيير الإيميل
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Navbar -->
+    <header class="navbar">
+        <div class="brand-section">
+            <div class="logo-box">
+                <img src="ESME_Cairo_Logo_Web.png" alt="ESME Logo" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
+                <div id="logoFallback" class="logo-fallback" style="display:none;">ES<span>M</span>E</div>
+            </div>
+            <div class="brand-titles">
+                <h1>ESME Cairo University Student Chapter</h1>
+                <p>Egyptian Society of Materials Engineers • Recruitment 2027</p>
+            </div>
+        </div>
+        <div class="user-info-bar">
+            <span id="loggedUserBadge" class="slogan-badge"><i class="fa-solid fa-user-shield"></i> Not Logged In</span>
+            <button class="btn btn-danger" style="padding: 5px 12px; font-size: 0.8rem;" onclick="logoutPortal()">
+                <i class="fa-solid fa-right-from-bracket"></i> خروج
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Protected Content -->
+    <div class="container" id="mainAppContainer">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card total" onclick="filterByStatus('all')">
+                <div class="stat-info">
+                    <h3>إجمالي المتقدمين (Total)</h3>
+                    <div class="number" id="statTotal">0</div>
+                </div>
+                <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div class="stat-card accepted" onclick="filterByStatus('accepted')">
+                <div class="stat-info">
+                    <h3>المقبولين (Accepted)</h3>
+                    <div class="number" id="statAccepted">0</div>
+                </div>
+                <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+            </div>
+            <div class="stat-card waiting" onclick="filterByStatus('waiting list')">
+                <div class="stat-info">
+                    <h3>قائمة الانتظار (Waiting)</h3>
+                    <div class="number" id="statWaiting">0</div>
+                </div>
+                <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+            </div>
+            <div class="stat-card rejected" onclick="filterByStatus('Rejected')">
+                <div class="stat-info">
+                    <h3>المرفوضين (Rejected)</h3>
+                    <div class="number" id="statRejected">0</div>
+                </div>
+                <div class="stat-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+            </div>
+            <div class="stat-card hold" onclick="filterByStatus('hold')">
+                <div class="stat-info">
+                    <h3>معلق / مؤجل (Hold)</h3>
+                    <div class="number" id="statHold">0</div>
+                </div>
+                <div class="stat-icon"><i class="fa-solid fa-pause-circle"></i></div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="top-controls">
+            <div class="tabs">
+                <button class="tab-btn active" id="tabBtnCandidates" onclick="switchTab('candidates', this)">
+                    <i class="fa-solid fa-table-list"></i> جدول المتقدمين وتحديد اللجان
+                </button>
+                <button class="tab-btn" id="tabBtnGroups" onclick="switchTab('groups', this)">
+                    <i class="fa-brands fa-whatsapp"></i> لينكات جروبات الواتساب وقوالب الإيميل (English)
+                </button>
+                <button class="tab-btn" id="tabBtnAccess" onclick="switchTab('access', this)">
+                    <i class="fa-solid fa-user-lock"></i> إدارة الصلاحيات (Access Control)
+                </button>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-success" onclick="openBulkModal('accepted')">
+                    <i class="fa-solid fa-paper-plane"></i> إرسال إيميل القبول للمقبولين
+                </button>
+                <button class="btn btn-danger" onclick="openBulkModal('Rejected')">
+                    <i class="fa-solid fa-envelope-circle-check"></i> إرسال إيميل الاعتذار للمرفوضين
+                </button>
+                <button class="btn btn-navy" onclick="syncToCloud()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> حفظ ومزامنة للسحابة الآن
+                </button>
+                <button class="btn btn-outline" onclick="exportToCSV()">
+                    <i class="fa-solid fa-file-csv"></i> تصدير CSV
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW 1: CANDIDATES TABLE -->
+        <div id="view-candidates" class="view-section active">
+            <div class="filters-row">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="ابحث بالاسم، الإيميل، رقم الواتساب، أو الجامعة..." oninput="renderTable()">
+                </div>
+
+                <select id="statusFilter" class="filter-select" onchange="renderTable()">
+                    <option value="all">كل الحالات (All Statuses)</option>
+                    <option value="accepted">المقبولين (Accepted)</option>
+                    <option value="waiting list">قائمة الانتظار (Waiting List)</option>
+                    <option value="Rejected">المرفوضين (Rejected)</option>
+                    <option value="hold">معلق / مؤجل (Hold)</option>
+                </select>
+
+                <select id="sectorFilter" class="filter-select" onchange="renderTable()">
+                    <option value="all">كل اللجان (All Sectors)</option>
+                    <option value="BF">BF: Business & Finance</option>
+                    <option value="OSC">OSC & Digital Transformation</option>
+                    <option value="TE">TE: Technical & Engineering</option>
+                    <option value="MC">MC: Marketing & Communication</option>
+                    <option value="SID">SID: Strategy & Institutional Dev</option>
+                </select>
+            </div>
+
+            <div class="table-card">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الاسم والجامعة</th>
+                                <th>البريد الإلكتروني (E-Mail)</th>
+                                <th>الواتساب</th>
+                                <th>الرغبات (1st & 2nd)</th>
+                                <th>اللجنة المقبول بها (تحدد جروب الواتساب)</th>
+                                <th>المجموع (10)</th>
+                                <th>القرار النهائي</th>
+                                <th>ملاحظات / سبب الرفض</th>
+                                <th>معاينة وإرسال</th>
+                            </tr>
+                        </thead>
+                        <tbody id="candidatesTbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: WHATSAPP GROUPS & ENGLISH TEMPLATES -->
+        <div id="view-groups" class="view-section">
+            <div class="panel-card orange-top">
+                <h2><i class="fa-brands fa-whatsapp" style="color: #16A34A; font-size: 1.4rem;"></i> روابط جروبات الواتساب لكل لجنة (Sector WhatsApp Group Links)</h2>
+                <div class="groups-grid">
+                    <div class="form-group">
+                        <label>💼 BF: Business & Finance Group Link:</label>
+                        <input type="url" id="wa_BF" class="form-control" dir="ltr" placeholder="https://chat.whatsapp.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>⚙️ OSC & Digital Transformation Group Link:</label>
+                        <input type="url" id="wa_OSC" class="form-control" dir="ltr" placeholder="https://chat.whatsapp.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>🛠️ TE: Technical & Engineering Group Link:</label>
+                        <input type="url" id="wa_TE" class="form-control" dir="ltr" placeholder="https://chat.whatsapp.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>📢 MC: Marketing & Communication Group Link:</label>
+                        <input type="url" id="wa_MC" class="form-control" dir="ltr" placeholder="https://chat.whatsapp.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>📈 SID: Strategy & Institutional Dev. Group Link:</label>
+                        <input type="url" id="wa_SID" class="form-control" dir="ltr" placeholder="https://chat.whatsapp.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>🌐 General Chapter Announcement Group:</label>
+                        <input type="url" id="wa_GENERAL" class="form-control" dir="ltr" placeholder="https://chat.whatsapp.com/...">
+                    </div>
+                </div>
+                <button class="btn btn-orange" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ ومزامنة الروابط</button>
+            </div>
+
+            <div class="email-grid">
+                <div class="panel-card">
+                    <h2><i class="fa-solid fa-award" style="color: var(--status-accepted);"></i> Acceptance Email Template (English Only)</h2>
+                    <div class="variable-tags">
+                        <span class="var-tag" onclick="insertVar('accBody', '{name}')">{name}</span>
+                        <span class="var-tag" onclick="insertVar('accBody', '{sector}')">{sector}</span>
+                        <span class="var-tag" onclick="insertVar('accBody', '{whatsapp_link}')">{whatsapp_link}</span>
+                        <span class="var-tag" onclick="insertVar('accBody', '{university}')">{university}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Subject:</label>
+                        <input type="text" id="accSubject" class="form-control" dir="ltr" value="Congratulations! Welcome to ESME Cairo University Student Chapter (Season 2026/2027) 🎉">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Body:</label>
+                        <textarea id="accBody" class="form-control">Dear {name},
+
+Warm greetings from ESME Cairo University Student Chapter!
+
+We are thrilled to inform you that after reviewing your application and interview performance, you have been officially ACCEPTED to join the ESME Cairo family for the 2026/2027 season in the ({sector}) sector! 🎉
+
+Your enthusiasm, potential, and mindset truly stood out, and we are confident that you will make a remarkable impact with us under our slogan: "BE POSITIVE VALUABLES".
+
+👉 Next Step — Join Your Sector's Official WhatsApp Group:
+Please click the link below to join the ({sector}) WhatsApp group immediately to meet your Head and team members:
+{whatsapp_link}
+
+Welcome aboard, and get ready for an inspiring and productive season!
+
+Best Regards,
+Sameh Ibrahem
+Vice President | ESME Cairo University Student Chapter</textarea>
+                    </div>
+                    <button class="btn btn-navy" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ القالب</button>
+                </div>
+
+                <div class="panel-card">
+                    <h2><i class="fa-solid fa-envelope" style="color: var(--status-rejected);"></i> Rejection Email Template (English Only)</h2>
+                    <div class="variable-tags">
+                        <span class="var-tag" onclick="insertVar('rejBody', '{name}')">{name}</span>
+                        <span class="var-tag" onclick="insertVar('rejBody', '{sector}')">{sector}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Subject:</label>
+                        <input type="text" id="rejSubject" class="form-control" dir="ltr" value="Update Regarding Your Application to ESME Cairo University Student Chapter (2026/2027)">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Body:</label>
+                        <textarea id="rejBody" class="form-control">Dear {name},
+
+Thank you very much for your interest in joining ESME Cairo University Student Chapter for the 2026/2027 season and for taking the time to apply for the ({sector}) sector.
+
+We received a highly competitive pool of applications this season. After careful evaluation, we regret to inform you that we will not be able to proceed with your application at this time due to the limited number of spots available in the sector.
+
+Please keep in mind that this decision does not reflect a lack of potential on your part. We truly appreciate your passion and strongly encourage you to participate in our upcoming events, technical workshops, and summits, and to apply again in future recruitment waves.
+
+Wishing you the very best in your academic and professional journey!
+
+Best Regards,
+Sameh Ibrahem
+Vice President | ESME Cairo University Student Chapter</textarea>
+                    </div>
+                    <button class="btn btn-navy" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ القالب</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 3: ACCESS CONTROL (WHITELIST EMAILS) -->
+        <div id="view-access" class="view-section">
+            <div class="panel-card orange-top" style="max-width: 750px;">
+                <h2><i class="fa-solid fa-user-shield" style="color: var(--esme-orange);"></i> إدارة قائمة الإيميلات المصرح لها بالدخول والعمل (Authorized Users)</h2>
+                <p style="font-size: 0.9rem; color: #475569; margin-bottom: 1rem;">
+                    أي شخص غير موجود في هذه القائمة لن يتمكن من فتح البرنامج أو رؤية الداتا حتى لو قام بتحميل الكود من GitHub. أضف إيميلات الـ Heads أو البورد هنا:
+                </p>
+                <div style="display: flex; gap: 10px; margin-bottom: 1.2rem;">
+                    <input type="email" id="newAllowedEmail" class="form-control" dir="ltr" placeholder="head_email@gmail.com">
+                    <button class="btn btn-orange" onclick="addAllowedEmail()"><i class="fa-solid fa-plus"></i> إضافة إيميل</button>
+                </div>
+                <div id="allowedEmailsList" class="recipient-list" style="max-height: 320px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Single Email Preview & Live Edit Modal -->
+    <div id="singlePreviewModal" class="modal-overlay">
+        <div class="modal-box" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 id="singlePreviewTitle">معاينة وتعديل الإيميل قبل الإرسال (English)</h3>
+                <button class="close-btn" onclick="closeSinglePreviewModal()">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>To Email:</label>
+                <input type="email" id="previewToEmail" class="form-control" dir="ltr">
+            </div>
+            <div class="form-group">
+                <label>Subject (قابل للتعديل):</label>
+                <input type="text" id="previewSubject" class="form-control" dir="ltr">
+            </div>
+            <div class="form-group">
+                <label>Body (English - يمكنك التعديل بحرية قبل الإرسال):</label>
+                <textarea id="previewBody" class="form-control" style="min-height: 250px;"></textarea>
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+                <button class="btn btn-orange" onclick="sendSingleViaBackend()">
+                    <i class="fa-solid fa-bolt"></i> إرسال فوري عبر السيرفر (Auto Send)
+                </button>
+                <button class="btn btn-navy" onclick="confirmSingleSendGmail()">
+                    <i class="fa-brands fa-google"></i> فتح في Gmail
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Send Modal -->
+    <div id="bulkModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="bulkModalTitle">مراجعة وتعديل الإيميل الجماعي قبل الإرسال</h3>
+                <button class="close-btn" onclick="closeBulkModal()">&times;</button>
+            </div>
+            <div id="bulkModalSummary" style="margin-bottom: 0.8rem; font-size: 0.9rem;"></div>
+
+            <div style="background: #F8FAFC; padding: 1rem; border-radius: 10px; border: 1px solid #E2E8F0; margin-bottom: 1rem;">
+                <strong style="color:var(--esme-navy); font-size:0.88rem; display:block; margin-bottom:6px;">
+                    ✏️ يمكنك تعديل النص الإنجليزي هنا مباشرة قبل الإرسال للجميع (يتم تعويض <code>{name}</code> و <code>{sector}</code> و <code>{whatsapp_link}</code> تلقائياً لكل فرد):
+                </strong>
+                <div class="form-group" style="margin-bottom: 0.6rem;">
+                    <input type="text" id="bulkLiveSubject" class="form-control" dir="ltr">
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <textarea id="bulkLiveBody" class="form-control" style="min-height: 170px;"></textarea>
+                </div>
+            </div>
+
+            <div class="recipient-list" id="bulkRecipientList"></div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; border-top: 1px solid #E2E8F0; padding-top: 1rem;">
+                <button class="btn btn-orange" onclick="executeBulkBackendSend()">
+                    <i class="fa-solid fa-bolt"></i> إرسال أوتوماتيكي مخصص لكل فرد بلينك لجنته الآن
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // ✅ تم ربط اللينك الخاص بك مباشرة هنا:
+        const BACKEND_URL = "https://script.google.com/macros/s/AKfycbzADRf7VQ0zHMfWWFrAAm3yqL7t9oWfnGt9Tbn1cu3eDimnsMKhp33vp4qCdIBoqS67/exec";
+
+        const SECTORS = [
+            { code: "BF", label: "BF: Business & Finance" },
+            { code: "OSC", label: "OSC: Operations, Supply Chain & Digital Transformation" },
+            { code: "TE", label: "TE: Technical & Engineering" },
+            { code: "MC", label: "MC: Marketing & Communication" },
+            { code: "SID", label: "SID: Strategy & Institutional Development" }
+        ];
+
+        const INITIAL_CANDIDATES = [
+            { id: 1, name: "Youssf ashraf ali mohammed", uni: "Cairo University", phone: "+201145319430", email: "yousfabozad1@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "3.9", tech: "4.1", status: "accepted", notes: "" },
+            { id: 2, name: "Orkeed Mohamed Abdel- Mawgoud", uni: "Cairo University", phone: "+201211106283", email: "orkeedomran11@gmail.com", pref1: "BF: Business & finance", pref2: "OSC & digital transformation", assignedSector: "BF", nonTech: "4", tech: "4.8", status: "accepted", notes: "HR at TCCD" },
+            { id: 3, name: "Omar ahmed mohmed amin", uni: "Egyptian Chinese University", phone: "+201017742420", email: "33omarahmed99@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "3", tech: "3.1", status: "waiting list", notes: "" },
+            { id: 4, name: "Adham Emad Eldin Omar Abdelhady", uni: "Cairo University", phone: "+201068736687", email: "adhamemad555555@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "3.8", tech: "4.8", status: "waiting list", notes: "" },
+            { id: 5, name: "Mohamed samy Shawky Mohamed", uni: "Cairo University", phone: "+201111546417", email: "mohammedsamy4534@gmail.com", pref1: "BF: Business & finance", pref2: "TE: Technical & Engineering", assignedSector: "BF", nonTech: "3.5", tech: "3.8", status: "waiting list", notes: "" },
+            { id: 6, name: "Mohanad Yasser Ahmed Yacub", uni: "Cairo University", phone: "+201030078177", email: "mohanadyasser054@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "3.5", tech: "4.5", status: "waiting list", notes: "" },
+            { id: 7, name: "Mahmoud Ahmed Mahmoud Ibrahim sabra", uni: "Egyptian Chinese University", phone: "+201145063496", email: "Mahmoud.ah53335@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "1", tech: "3.5", status: "Rejected", notes: "تغير الميعاد لحظة meeting وعدم الكفاءة" },
+            { id: 8, name: "Ahd Ahmed Mahmoud Hassan", uni: "Cairo University", phone: "+201093288859", email: "ahd.hassan06@eng-st.cu.edu.eg", pref1: "OSC & digital transformation", pref2: "MC: Marketing & communication", assignedSector: "OSC", nonTech: "4", tech: "6", status: "waiting list", notes: "" },
+            { id: 9, name: "Ibrahim Medhat Mohamed Reda", uni: "Cairo University", phone: "+201116602538", email: "1br4hhm@gmail.com", pref1: "OSC & digital transformation", pref2: "BF: Business & finance", assignedSector: "OSC", nonTech: "4", tech: "6", status: "waiting list", notes: "" },
+            { id: 10, name: "Habiba Toba Eid Suleiman", uni: "Fayoum University", phone: "+201068595308", email: "habibatoba40@gmail.com", pref1: "OSC & digital transformation", pref2: "TE: Technical & Engineering", assignedSector: "OSC", nonTech: "3", tech: "4", status: "waiting list", notes: "" },
+            { id: 11, name: "Karem Ahmed Khairy Abdelghfar", uni: "Cairo University", phone: "+201554204461", email: "karemelhwary5@gmail.com", pref1: "OSC & digital transformation", pref2: "OSC & digital transformation", assignedSector: "OSC", nonTech: "3", tech: "4", status: "waiting list", notes: "" },
+            { id: 12, name: "Esraa sherif biomy fouda", uni: "Cairo University", phone: "+201117216649", email: "israafouda2000@gmail.com", pref1: "OSC & digital transformation", pref2: "SID: Strategy & Institutional Development", assignedSector: "OSC", nonTech: "2", tech: "5", status: "waiting list", notes: "" },
+            { id: 13, name: "Youssef Mostafa Elsayed Mohamed El-Tahtawy", uni: "Cairo University", phone: "+201115103843", email: "youssef.el-tahtawy07@eng-st.cu.edu.eg", pref1: "OSC & digital transformation", pref2: "BF: Business & finance", assignedSector: "OSC", nonTech: "0", tech: "0", status: "Rejected", notes: "غير رأيه قبل الـ interview" },
+            { id: 14, name: "Omar Abdalaziz Lotfi Abdalaziz", uni: "Cairo University", phone: "+201027241983", email: "abdalazizomar602@gmail.com", pref1: "OSC & digital transformation", pref2: "TE: Technical & Engineering", assignedSector: "OSC", nonTech: "0", tech: "0", status: "Rejected", notes: "غير رأيه قبل الانترفيو" },
+            { id: 15, name: "sondos mohamed amer shehata", uni: "Cairo University", phone: "+201126046407", email: "sonomar4578@gmail.com", pref1: "OSC & digital transformation", pref2: "MC: Marketing & communication", assignedSector: "OSC", nonTech: "0", tech: "0", status: "Rejected", notes: "غير رأيه قبل الانترفيو" },
+            { id: 16, name: "Ahmed Atef", uni: "Cairo University", phone: "+201095028288", email: "", pref1: "TE: Technical & Engineering", pref2: "TE: Technical & Engineering", assignedSector: "TE", nonTech: "", tech: "6", status: "accepted", notes: "توصية مباشرة" },
+            { id: 17, name: "Ahmed Ashraf Abbas Sayed", uni: "Cairo University", phone: "+201007515873", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "", tech: "", status: "accepted", notes: "توصية مباشرة" },
+            { id: 18, name: "Yahia Hassan Ali Abo Shanab", uni: "Al-Azhar University", phone: "+201013278388", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "2.5", tech: "5", status: "waiting list", notes: "" },
+            { id: 19, name: "Jana Ahmed Najeeb Othman", uni: "Cairo University", phone: "+201093726778", email: "jo8164861@gmail.com", pref1: "TE: Technical & Engineering", pref2: "MC: Marketing & communication", assignedSector: "TE", nonTech: "3.5", tech: "6", status: "waiting list", notes: "موجودة في doss sector oc" },
+            { id: 20, name: "Shahd saber abdelmotalb", uni: "Cairo University", phone: "+201117892128", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "3.5", tech: "6", status: "waiting list", notes: "" },
+            { id: 21, name: "Aboubakr Hamdy Safwat Elzamzamy", uni: "Al-Azhar University", phone: "+201065841636", email: "", pref1: "TE: Technical & Engineering", pref2: "TE: Technical & Engineering", assignedSector: "TE", nonTech: "3", tech: "6", status: "waiting list", notes: "" },
+            { id: 22, name: "Yousef Ahmed Mohammed Mohammed", uni: "Cairo University", phone: "+201148892840", email: "", pref1: "TE: Technical & Engineering", pref2: "MC: Marketing & communication", assignedSector: "TE", nonTech: "3.5", tech: "5", status: "waiting list", notes: "" },
+            { id: 23, name: "Jolie Emad Maher Azmy", uni: "Cairo University", phone: "+201226626588", email: "", pref1: "TE: Technical & Engineering", pref2: "SID: Strategy & Institutional Development", assignedSector: "TE", nonTech: "3.5", tech: "5", status: "waiting list", notes: "موجودة مع IEEE بس لجنة مختلفة" },
+            { id: 24, name: "Mennatallah ahmed mohamed", uni: "Cairo University", phone: "+201111086390", email: "Elhagamona391@gmail.com", pref1: "TE: Technical & Engineering", pref2: "SID: Strategy & Institutional Development", assignedSector: "TE", nonTech: "2.5", tech: "5", status: "waiting list", notes: "" },
+            { id: 25, name: "Omar mokhtar abdelalim Mamoun boshnaq", uni: "Capital University", phone: "+201224839297", email: "boshnaq20@gmail.com", pref1: "TE: Technical & Engineering", pref2: "TE: Technical & Engineering", assignedSector: "TE", nonTech: "1", tech: "2", status: "Rejected", notes: "إجاباته مش محددة + عدم الالتزام بالميعاد" },
+            { id: 26, name: "Mazen tamer Mohamed danyal", uni: "Cairo University", phone: "+201122866681", email: "mazentamerdanyal@gmail.com", pref1: "TE: Technical & Engineering", pref2: "MC: Marketing & communication", assignedSector: "TE", nonTech: "", tech: "", status: "Rejected", notes: "لم يحضر" },
+            { id: 27, name: "Ahmed Mohammed Ahmed Grisha", uni: "Cairo University", phone: "+201025649452", email: "", pref1: "TE: Technical & Engineering", pref2: "BF: Business & finance", assignedSector: "TE", nonTech: "2.5", tech: "4", status: "Rejected", notes: "غير متوافق مع مجاله" },
+            { id: 28, name: "bahgat ramadan bahgat mohammed", uni: "Cairo University", phone: "+201095175705", email: "", pref1: "TE: Technical & Engineering", pref2: "SID: Strategy & Institutional Development", assignedSector: "TE", nonTech: "", tech: "", status: "Rejected", notes: "hold" },
+            { id: 29, name: "Abdallah mahmoud rashed", uni: "Cairo University", phone: "+201143698394", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "hold" },
+            { id: 30, name: "Paula Habib", uni: "Cairo University", phone: "+201034712757", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "hold" },
+            { id: 31, name: "Ahmed Ragab soltan Abdel_Azim", uni: "Cairo University", phone: "+201020003772", email: "", pref1: "TE: Technical & Engineering", pref2: "SID: Strategy & Institutional Development", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "hold" },
+            { id: 32, name: "Anas Abdelhaseeb Abdelraheem sabra", uni: "Cairo University", phone: "+201012768723", email: "", pref1: "TE: Technical & Engineering", pref2: "BF: Business & finance", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "hold" },
+            { id: 33, name: "Ahmed Sherif Mohamed Reda", uni: "Cairo University", phone: "+201097426484", email: "", pref1: "TE: Technical & Engineering", pref2: "MC: Marketing & communication", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "لم يتم تقييمه بعد" },
+            { id: 34, name: "Rawan Mesbah Essam Mesbah", uni: "New Cairo Tech University", phone: "+201032390228", email: "", pref1: "MC: Marketing & communication", pref2: "MC: Marketing & communication", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "عدم حضور الـ interview" },
+            { id: 35, name: "Aya tullah Osama Mohamed Nabih abdelatty", uni: "Cairo University", phone: "+201000428458", email: "", pref1: "MC: Marketing & communication", pref2: "BF: Business & finance", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "عدم حضور الـ interview" },
+            { id: 36, name: "Rofida Shaaban Abdallah Hassan", uni: "Cairo University", phone: "+201010942778", email: "", pref1: "MC: Marketing & communication", pref2: "SID: Strategy & Institutional Development", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "شافت إنها مش هتقدر تعمل balance" },
+            { id: 37, name: "Mohamed ismail ali ismail", uni: "Cairo University", phone: "+201117104379", email: "", pref1: "MC: Marketing & communication", pref2: "OSC & digital transformation", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "عدم حضور الـ interview" },
+            { id: 38, name: "Amr Alaa Abdelrahim Hamed", uni: "Cairo University", phone: "+201022339983", email: "", pref1: "MC: Marketing & communication", pref2: "BF: Business & finance", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "عمل التاسك لكن لم يحضر الـ interview" },
+            { id: 39, name: "George Mosaad Adeeb Mosaad", uni: "Assiut National University", phone: "+201210152004", email: "", pref1: "MC: Marketing & communication", pref2: "MC: Marketing & communication", assignedSector: "MC", nonTech: "", tech: "", status: "hold", notes: "أجلناها للجمعة الساعة 7 بليل" }
+        ];
+
+        let candidates = [];
+        let allowedEmails = [];
+        let sessionToken = localStorage.getItem('esme_session_token') || "";
+        let loggedInEmail = localStorage.getItem('esme_logged_email') || "";
+        let currentBulkMode = 'accepted';
+        let activeSingleCandidateId = null;
+
+        async function apiCall(payload) {
+            const res = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
+            });
+            return await res.json();
+        }
+
+        async function requestOTP() {
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            if (!email || !email.includes('@')) return alert('برجاء إدخال بريد إلكتروني صحيح.');
+
+            const btn = document.getElementById('btnSendOtp');
+            btn.disabled = true;
+            btn.innerText = 'جاري التحقق من الصلاحية وإرسال الكود...';
+
+            try {
+                const res = await apiCall({ action: 'request_otp', email: email });
+                if (res.status === 'success') {
+                    document.getElementById('authStep1').style.display = 'none';
+                    document.getElementById('authStep2').style.display = 'block';
+                    showToast(res.message);
+                } else {
+                    alert(res.message || 'غير مصرح لهذا البريد بالدخول.');
+                }
+            } catch (e) {
+                alert('حدث خطأ في الاتصال بالسيرفر. تأكد من إعطاء الصلاحيات (Authorize) داخل Google Apps Script.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-shield-halved"></i> إرسال رمز التحقق (Send Login Code)';
+            }
+        }
+
+        async function verifyOTP() {
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const code = document.getElementById('loginOtp').value.trim();
+            if (!code) return alert('أدخل الكود المكون من 6 أرقام');
+
+            const btn = document.getElementById('btnVerifyOtp');
+            btn.disabled = true;
+            btn.innerText = 'جاري التحقق...';
+
+            try {
+                const res = await apiCall({ action: 'verify_otp', email: email, code: code });
+                if (res.status === 'success') {
+                    sessionToken = res.token;
+                    loggedInEmail = res.email;
+                    localStorage.setItem('esme_session_token', sessionToken);
+                    localStorage.setItem('esme_logged_email', loggedInEmail);
+                    allowedEmails = res.allowedEmails || [];
+                    unlockPortal(res.appData);
+                } else {
+                    alert(res.message || 'الكود غير صحيح');
+                }
+            } catch (e) {
+                alert('خطأ في الاتصال بالسيرفر');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-unlock-keyhole"></i> تأكيد الدخول للنظام';
+            }
+        }
+
+        function backToStep1() {
+            document.getElementById('authStep2').style.display = 'none';
+            document.getElementById('authStep1').style.display = 'block';
+        }
+
+        function unlockPortal(cloudData) {
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('mainAppContainer').style.display = 'block';
+            document.getElementById('loggedUserBadge').innerHTML = `<i class="fa-solid fa-user-check"></i> ${loggedInEmail}`;
+
+            if (cloudData && cloudData.candidates) {
+                candidates = cloudData.candidates;
+                if (cloudData.config) applyConfig(cloudData.config);
+            } else {
+                candidates = JSON.parse(JSON.stringify(INITIAL_CANDIDATES));
+                syncToCloud();
+            }
+
+            updateStats();
+            renderTable();
+            renderAllowedEmails();
+        }
+
+        function applyConfig(cfg) {
+            if (cfg.accSubject) document.getElementById('accSubject').value = cfg.accSubject;
+            if (cfg.accBody) document.getElementById('accBody').value = cfg.accBody;
+            if (cfg.rejSubject) document.getElementById('rejSubject').value = cfg.rejSubject;
+            if (cfg.rejBody) document.getElementById('rejBody').value = cfg.rejBody;
+            ['BF', 'OSC', 'TE', 'MC', 'SID', 'GENERAL'].forEach(code => {
+                if (cfg['wa_' + code]) document.getElementById('wa_' + code).value = cfg['wa_' + code];
+            });
+        }
+
+        function getCurrentConfig() {
+            return {
+                accSubject: document.getElementById('accSubject').value,
+                accBody: document.getElementById('accBody').value,
+                rejSubject: document.getElementById('rejSubject').value,
+                rejBody: document.getElementById('rejBody').value,
+                wa_BF: document.getElementById('wa_BF').value.trim(),
+                wa_OSC: document.getElementById('wa_OSC').value.trim(),
+                wa_TE: document.getElementById('wa_TE').value.trim(),
+                wa_MC: document.getElementById('wa_MC').value.trim(),
+                wa_SID: document.getElementById('wa_SID').value.trim(),
+                wa_GENERAL: document.getElementById('wa_GENERAL').value.trim()
+            };
+        }
+
+        async function syncToCloud() {
+            if (!sessionToken) return;
+            try {
+                const res = await apiCall({
+                    action: 'save_data',
+                    token: sessionToken,
+                    appData: {
+                        candidates: candidates,
+                        config: getCurrentConfig()
+                    }
+                });
+                if (res.status === 'success') {
+                    showToast('تم حفظ ومزامنة البيانات على السحابة بنجاح! ☁️✅');
+                } else if (res.status === 'unauthorized') {
+                    logoutPortal();
+                }
+            } catch (e) {
+                showToast('تم الحفظ مؤقتاً');
+            }
+        }
+
+        function logoutPortal() {
+            localStorage.removeItem('esme_session_token');
+            localStorage.removeItem('esme_logged_email');
+            location.reload();
+        }
+
+        function renderAllowedEmails() {
+            const container = document.getElementById('allowedEmailsList');
+            container.innerHTML = '';
+            allowedEmails.forEach(em => {
+                const div = document.createElement('div');
+                div.className = 'recipient-item';
+                div.innerHTML = `
+                    <strong style="font-family:'Roboto',sans-serif; direction:ltr;">${em}</strong>
+                    <button class="btn btn-danger" style="padding:4px 10px; font-size:0.78rem;" onclick="removeAllowedEmail('${em}')">
+                        <i class="fa-solid fa-trash"></i> إلغاء الصلاحية
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        async function addAllowedEmail() {
+            const inp = document.getElementById('newAllowedEmail');
+            const em = inp.value.trim().toLowerCase();
+            if (!em || !em.includes('@')) return alert('أدخل إيميل صحيح');
+            if (!allowedEmails.includes(em)) allowedEmails.push(em);
+            inp.value = '';
+            const res = await apiCall({ action: 'update_whitelist', token: sessionToken, allowedEmails: allowedEmails });
+            if (res.status === 'success') {
+                allowedEmails = res.allowedEmails;
+                renderAllowedEmails();
+                showToast('تمت إضافة الإيميل لقائمة الصلاحيات بنجاح! 🔐');
+            }
+        }
+
+        async function removeAllowedEmail(em) {
+            if (!confirm(`هل أنت متأكد من إلغاء صلاحية الدخول لـ ${em}؟`)) return;
+            allowedEmails = allowedEmails.filter(x => x !== em);
+            const res = await apiCall({ action: 'update_whitelist', token: sessionToken, allowedEmails: allowedEmails });
+            if (res.status === 'success') {
+                allowedEmails = res.allowedEmails;
+                renderAllowedEmails();
+                showToast('تم تحديث قائمة الصلاحيات');
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('statTotal').innerText = candidates.length;
+            document.getElementById('statAccepted').innerText = candidates.filter(c => c.status === 'accepted').length;
+            document.getElementById('statWaiting').innerText = candidates.filter(c => c.status === 'waiting list').length;
+            document.getElementById('statRejected').innerText = candidates.filter(c => c.status === 'Rejected').length;
+            document.getElementById('statHold').innerText = candidates.filter(c => c.status === 'hold').length;
+        }
+
+        function shortSector(s) {
+            if (!s) return '-';
+            if (s.startsWith('BF')) return 'BF: Business & Finance';
+            if (s.startsWith('OSC')) return 'OSC & Digital Trans.';
+            if (s.startsWith('TE')) return 'TE: Technical & Eng.';
+            if (s.startsWith('MC')) return 'MC: Marketing & Comm.';
+            if (s.startsWith('SID')) return 'SID: Strategy & Dev.';
+            return s;
+        }
+
+        function calcTotal(nonTech, tech) {
+            const n = parseFloat(nonTech);
+            const t = parseFloat(tech);
+            if (isNaN(n) && isNaN(t)) return null;
+            return ((isNaN(n) ? 0 : n) + (isNaN(t) ? 0 : t)).toFixed(1).replace(/\.0$/, '');
+        }
+
+        function getStatusClass(st) {
+            if (st === 'accepted') return 'accepted';
+            if (st === 'waiting list') return 'waiting';
+            if (st === 'Rejected') return 'rejected';
+            return 'hold';
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('candidatesTbody');
+            const q = document.getElementById('searchInput').value.toLowerCase().trim();
+            const stFilter = document.getElementById('statusFilter').value;
+            const secFilter = document.getElementById('sectorFilter').value;
+
+            tbody.innerHTML = '';
+
+            const filtered = candidates.filter(c => {
+                const matchQ = !q ||
+                    c.name.toLowerCase().includes(q) ||
+                    (c.email && c.email.toLowerCase().includes(q)) ||
+                    (c.phone && c.phone.includes(q)) ||
+                    (c.uni && c.uni.toLowerCase().includes(q));
+                const matchStatus = stFilter === 'all' || c.status === stFilter;
+                const matchSector = secFilter === 'all' || c.assignedSector === secFilter;
+                return matchQ && matchStatus && matchSector;
+            });
+
+            filtered.forEach((c, idx) => {
+                const total = calcTotal(c.nonTech, c.tech);
+                let scoreClass = 'score-na';
+                if (total !== null) {
+                    const num = parseFloat(total);
+                    scoreClass = num >= 7.5 ? 'score-high' : (num >= 6 ? 'score-mid' : 'score-low');
+                }
+
+                const cleanPhone = (c.phone || '').replace(/[^0-9]/g, '');
+                const waNumber = cleanPhone.startsWith('0') ? '2' + cleanPhone : cleanPhone;
+
+                const sectorOptions = SECTORS.map(s =>
+                    `<option value="${s.code}" ${c.assignedSector === s.code ? 'selected' : ''}>${s.code} Sector</option>`
+                ).join('');
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-weight:700; color:#64748B;">${idx + 1}</td>
+                    <td>
+                        <span class="candidate-name">${c.name}</span>
+                        <span class="candidate-uni">${c.uni || '-'}</span>
+                        ${c.emailed ? '<br><span class="sent-badge"><i class="fa-solid fa-check"></i> Email Sent</span>' : ''}
+                    </td>
+                    <td>
+                        <input type="email" class="email-input" value="${c.email || ''}" placeholder="Add Email..."
+                               onchange="updateField(${c.id}, 'email', this.value)">
+                    </td>
+                    <td style="direction:ltr; text-align:right; font-family:'Roboto',sans-serif;">
+                        <a href="https://wa.me/${waNumber}" target="_blank" class="icon-btn btn-wa"><i class="fa-brands fa-whatsapp"></i></a>
+                        <span style="font-size:0.78rem; margin-right:4px;">${c.phone || ''}</span>
+                    </td>
+                    <td>
+                        <div class="sector-badge">1st: ${shortSector(c.pref1)}</div><br>
+                        <div class="sector-badge second">2nd: ${shortSector(c.pref2)}</div>
+                    </td>
+                    <td>
+                        <select class="assigned-select" onchange="updateField(${c.id}, 'assignedSector', this.value)">
+                            ${sectorOptions}
+                        </select>
+                    </td>
+                    <td><span class="score-pill ${scoreClass}">${total !== null ? total + ' / 10' : 'N/A'}</span></td>
+                    <td>
+                        <select class="status-select ${getStatusClass(c.status)}" onchange="updateStatus(${c.id}, this.value)">
+                            <option value="accepted" ${c.status === 'accepted' ? 'selected' : ''}>Accepted ✅</option>
+                            <option value="waiting list" ${c.status === 'waiting list' ? 'selected' : ''}>Waiting List ⏳</option>
+                            <option value="Rejected" ${c.status === 'Rejected' ? 'selected' : ''}>Rejected ❌</option>
+                            <option value="hold" ${c.status === 'hold' ? 'selected' : ''}>Hold ⏸️</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="notes-input" value="${c.notes || ''}" placeholder="ملاحظات..."
+                               onchange="updateField(${c.id}, 'notes', this.value)">
+                    </td>
+                    <td>
+                        <button class="icon-btn btn-mail" onclick="openSinglePreviewModal(${c.id})" title="معاينة وتعديل الإيميل">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateField(id, field, value) {
+            const item = candidates.find(x => x.id === id);
+            if (item) {
+                item[field] = value.trim();
+                updateStats();
+                syncToCloud();
+            }
+        }
+
+        function updateStatus(id, newStatus) {
+            const item = candidates.find(x => x.id === id);
+            if (item) {
+                item.status = newStatus;
+                updateStats();
+                renderTable();
+                syncToCloud();
+            }
+        }
+
+        function filterByStatus(status) {
+            document.getElementById('statusFilter').value = status;
+            switchTab('candidates', document.getElementById('tabBtnCandidates'));
+            renderTable();
+        }
+
+        function switchTab(tabName, btnEl) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.getElementById('view-' + tabName).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+        }
+
+        function insertVar(textareaId, variable) {
+            const ta = document.getElementById(textareaId);
+            const start = ta.selectionStart;
+            const end = ta.selectionEnd;
+            ta.value = ta.value.substring(0, start) + variable + ta.value.substring(end);
+            ta.focus();
+        }
+
+        function getFullSectorName(code) {
+            const found = SECTORS.find(s => s.code === code);
+            return found ? found.label : code;
+        }
+
+        function getSectorWhatsAppLink(code) {
+            const el = document.getElementById('wa_' + code);
+            if (el && el.value.trim()) return el.value.trim();
+            return "[WhatsApp Group Link - Please Paste Here]";
+        }
+
+        function buildEmailContent(candidate, mode, customSubj, customBody) {
+            const isAccepted = (mode || candidate.status) === 'accepted';
+            const rawSubject = customSubj !== undefined ? customSubj : (isAccepted ? document.getElementById('accSubject').value : document.getElementById('rejSubject').value);
+            const rawBody = customBody !== undefined ? customBody : (isAccepted ? document.getElementById('accBody').value : document.getElementById('rejBody').value);
+
+            const secCode = candidate.assignedSector || "BF";
+            const sectorFull = getFullSectorName(secCode);
+            const waLink = getSectorWhatsAppLink(secCode);
+
+            const replaceVars = (str) => str
+                .replace(/\{name\}/g, candidate.name)
+                .replace(/\{sector\}/g, sectorFull)
+                .replace(/\{whatsapp_link\}/g, waLink)
+                .replace(/\{university\}/g, candidate.uni || 'Cairo University');
+
+            return { subject: replaceVars(rawSubject), body: replaceVars(rawBody) };
+        }
+
+        function openSinglePreviewModal(id) {
+            const c = candidates.find(x => x.id === id);
+            if (!c) return;
+            activeSingleCandidateId = id;
+            const mode = c.status === 'accepted' ? 'accepted' : 'Rejected';
+            const { subject, body } = buildEmailContent(c, mode);
+
+            document.getElementById('previewToEmail').value = c.email || '';
+            document.getElementById('previewSubject').value = subject;
+            document.getElementById('previewBody').value = body;
+            document.getElementById('singlePreviewModal').classList.add('open');
+        }
+
+        function closeSinglePreviewModal() {
+            document.getElementById('singlePreviewModal').classList.remove('open');
+        }
+
+        async function sendSingleViaBackend() {
+            const to = document.getElementById('previewToEmail').value.trim();
+            if (!to) return alert('Please enter recipient email.');
+            const subject = document.getElementById('previewSubject').value;
+            const body = document.getElementById('previewBody').value;
+
+            const res = await apiCall({
+                action: 'send_emails',
+                token: sessionToken,
+                recipients: [{ email: to, subject: subject, body: body }]
+            });
+
+            if (res.status === 'success') {
+                const c = candidates.find(x => x.id === activeSingleCandidateId);
+                if (c) { c.email = to; c.emailed = true; }
+                renderTable();
+                syncToCloud();
+                closeSinglePreviewModal();
+                showToast('تم إرسال الإيميل بنجاح! 🎉');
+            }
+        }
+
+        function confirmSingleSendGmail() {
+            const to = document.getElementById('previewToEmail').value.trim();
+            if (!to) return alert('Please enter recipient email.');
+            const subject = document.getElementById('previewSubject').value;
+            const body = document.getElementById('previewBody').value;
+            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+            closeSinglePreviewModal();
+        }
+
+        function openBulkModal(mode) {
+            currentBulkMode = mode;
+            const list = candidates.filter(c => c.status === mode);
+            const withEmail = list.filter(c => c.email && c.email.includes('@'));
+
+            const isAcc = mode === 'accepted';
+            document.getElementById('bulkLiveSubject').value = isAcc ? document.getElementById('accSubject').value : document.getElementById('rejSubject').value;
+            document.getElementById('bulkLiveBody').value = isAcc ? document.getElementById('accBody').value : document.getElementById('rejBody').value;
+
+            document.getElementById('bulkModalSummary').innerHTML = `إجمالي الفئة: <strong>${list.length}</strong> | جاهز للإرسال الفوري: <strong>${withEmail.length}</strong>`;
+
+            const container = document.getElementById('bulkRecipientList');
+            container.innerHTML = '';
+            list.forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'recipient-item';
+                div.innerHTML = `
+                    <strong>${c.name} (${c.assignedSector})</strong>
+                    <input type="email" class="email-input" value="${c.email || ''}" placeholder="Add email..."
+                           onchange="updateField(${c.id}, 'email', this.value);">
+                `;
+                container.appendChild(div);
+            });
+            document.getElementById('bulkModal').classList.add('open');
+        }
+
+        function closeBulkModal() {
+            document.getElementById('bulkModal').classList.remove('open');
+        }
+
+        async function executeBulkBackendSend() {
+            const list = candidates.filter(c => c.status === currentBulkMode && c.email && c.email.includes('@'));
+            if (list.length === 0) return alert('لا يوجد إيميلات مسجلة في هذه الفئة.');
+
+            const subjTpl = document.getElementById('bulkLiveSubject').value;
+            const bodyTpl = document.getElementById('bulkLiveBody').value;
+
+            const recipients = list.map(c => {
+                const content = buildEmailContent(c, currentBulkMode, subjTpl, bodyTpl);
+                return { email: c.email, subject: content.subject, body: content.body };
+            });
+
+            showToast('جاري إرسال الإيميلات المخصصة...');
+            const res = await apiCall({
+                action: 'send_emails',
+                token: sessionToken,
+                recipients: recipients
+            });
+
+            if (res.status === 'success') {
+                list.forEach(c => c.emailed = true);
+                renderTable();
+                syncToCloud();
+                closeBulkModal();
+                showToast(`تم إرسال ${res.sent} إيميل مخصص بنجاح! 🎉`);
+            }
+        }
+
+        function exportToCSV() {
+            const headers = ["ID", "Full Name", "University", "Whatsapp Number", "Email", "Assigned Sector", "Status", "Notes"];
+            const rows = candidates.map(c => [c.id, `"${c.name}"`, `"${c.uni}"`, `"${c.phone}"`, `"${c.email}"`, c.assignedSector, c.status, `"${c.notes}"`]);
+            const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "ESME_Recruitment_2027.csv";
+            a.click();
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 3200);
+        }
+
+        window.onload = async () => {
+            if (sessionToken && BACKEND_URL.startsWith("http")) {
+                try {
+                    const res = await apiCall({ action: 'get_data', token: sessionToken });
+                    if (res.status === 'success') {
+                        allowedEmails = res.allowedEmails || [];
+                        unlockPortal(res.appData);
+                    }
+                } catch (e) {}
+            }
+        };
+    </script>
+</body>
+</html>
