@@ -19,6 +19,8 @@
             --status-rejected: #EF4444;
             --status-waiting: #F59E0B;
             --status-hold: #6B7280;
+            --wa-green: #16A34A;
+            --wa-green-hover: #15803D;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,24 +54,9 @@
             text-align: center;
         }
 
-        .auth-logo {
-            height: 60px;
-            margin-bottom: 1rem;
-            object-fit: contain;
-        }
-
-        .auth-card h2 {
-            color: var(--esme-navy);
-            font-size: 1.4rem;
-            margin-bottom: 0.3rem;
-            font-weight: 800;
-        }
-
-        .auth-card p {
-            color: #64748B;
-            font-size: 0.88rem;
-            margin-bottom: 1.5rem;
-        }
+        .auth-logo { height: 60px; margin-bottom: 1rem; object-fit: contain; }
+        .auth-card h2 { color: var(--esme-navy); font-size: 1.4rem; margin-bottom: 0.3rem; font-weight: 800; }
+        .auth-card p { color: #64748B; font-size: 0.88rem; margin-bottom: 1.5rem; }
 
         /* Navbar */
         .navbar {
@@ -96,22 +83,12 @@
             justify-content: center;
         }
         .logo-box img { height: 42px; width: auto; object-fit: contain; }
-        .logo-fallback {
-            font-family: 'Roboto', sans-serif;
-            font-weight: 900;
-            font-size: 1.6rem;
-            color: var(--esme-navy);
-        }
+        .logo-fallback { font-family: 'Roboto', sans-serif; font-weight: 900; font-size: 1.6rem; color: var(--esme-navy); }
         .logo-fallback span { color: var(--esme-orange); }
         .brand-titles h1 { font-size: 1.3rem; font-weight: 800; font-family: 'Roboto', sans-serif; }
         .brand-titles p { font-size: 0.78rem; color: var(--esme-gray); font-family: 'Roboto', sans-serif; text-transform: uppercase; }
 
-        .user-info-bar {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .user-info-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .slogan-badge {
             background: rgba(224, 114, 32, 0.18);
             border: 1px solid var(--esme-orange);
@@ -123,19 +100,19 @@
             font-size: 0.8rem;
         }
 
-        .container { max-width: 1480px; margin: 1.8rem auto; padding: 0 1.2rem; display: none; }
+        .container { max-width: 1520px; margin: 1.6rem auto; padding: 0 1.2rem; display: none; }
 
         /* Stats Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 1.1rem;
-            margin-bottom: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.4rem;
         }
         .stat-card {
             background: var(--esme-white);
             border-radius: 12px;
-            padding: 1.2rem 1.4rem;
+            padding: 1.1rem 1.3rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -149,9 +126,9 @@
         .stat-card.waiting { border-right-color: var(--status-waiting); }
         .stat-card.rejected { border-right-color: var(--status-rejected); }
         .stat-card.hold { border-right-color: var(--status-hold); }
-        .stat-info h3 { font-size: 0.88rem; color: #64748B; font-weight: 700; }
-        .stat-info .number { font-size: 2rem; font-weight: 900; color: var(--esme-navy); font-family: 'Roboto', sans-serif; }
-        .stat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+        .stat-info h3 { font-size: 0.85rem; color: #64748B; font-weight: 700; }
+        .stat-info .number { font-size: 1.9rem; font-weight: 900; color: var(--esme-navy); font-family: 'Roboto', sans-serif; }
+        .stat-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; }
         .stat-card.total .stat-icon { background: rgba(3, 47, 87, 0.1); color: var(--esme-navy); }
         .stat-card.accepted .stat-icon { background: rgba(16, 185, 129, 0.12); color: var(--status-accepted); }
         .stat-card.waiting .stat-icon { background: rgba(245, 158, 11, 0.12); color: var(--status-waiting); }
@@ -161,44 +138,44 @@
         /* Controls */
         .top-controls {
             background: var(--esme-white);
-            padding: 1.1rem;
+            padding: 1rem 1.2rem;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            margin-bottom: 1.4rem;
+            margin-bottom: 1.2rem;
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             justify-content: space-between;
             align-items: center;
         }
-        .tabs { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .tab-btn {
-            padding: 0.65rem 1.2rem;
+            padding: 0.6rem 1.1rem;
             border: 1px solid var(--esme-gray);
             background: var(--esme-white);
             color: var(--esme-navy);
             border-radius: 8px;
             font-family: 'Cairo', sans-serif;
             font-weight: 700;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
         }
         .tab-btn.active, .tab-btn:hover { background: var(--esme-navy); color: var(--esme-white); border-color: var(--esme-navy); }
-        .action-buttons { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .action-buttons { display: flex; gap: 0.55rem; flex-wrap: wrap; }
         .btn {
-            padding: 0.6rem 1.1rem;
+            padding: 0.58rem 1rem;
             border: none;
             border-radius: 8px;
             font-family: 'Cairo', sans-serif;
             font-weight: 700;
-            font-size: 0.86rem;
+            font-size: 0.84rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
             transition: 0.2s;
         }
         .btn-orange { background: var(--esme-orange); color: var(--esme-white); }
@@ -206,18 +183,71 @@
         .btn-navy { background: var(--esme-navy); color: var(--esme-white); }
         .btn-navy:hover { background: var(--esme-navy-dark); }
         .btn-success { background: var(--status-accepted); color: var(--esme-white); }
+        .btn-wa-solid { background: var(--wa-green); color: var(--esme-white); }
+        .btn-wa-solid:hover { background: var(--wa-green-hover); }
         .btn-danger { background: var(--status-rejected); color: var(--esme-white); }
         .btn-outline { background: transparent; border: 1px solid var(--esme-navy); color: var(--esme-navy); }
         .btn-outline:hover { background: var(--esme-navy); color: var(--esme-white); }
+
+        /* Selection Bar */
+        .selection-bar {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            padding: 0.75rem 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .selection-info {
+            font-weight: 700;
+            color: var(--esme-navy);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .selection-count-badge {
+            background: var(--esme-orange);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .quick-select-btns {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .btn-xs {
+            padding: 4px 10px;
+            font-size: 0.78rem;
+            border-radius: 6px;
+            border: 1px solid #93C5FD;
+            background: #fff;
+            color: var(--esme-navy);
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+        }
+        .btn-xs:hover { background: var(--esme-navy); color: #fff; border-color: var(--esme-navy); }
 
         /* Filters & Table */
         .filters-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.9rem;
-            margin-bottom: 1.2rem;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
             background: var(--esme-white);
-            padding: 1rem 1.2rem;
+            padding: 0.9rem 1.2rem;
             border-radius: 12px;
             align-items: center;
         }
@@ -225,13 +255,13 @@
         .search-box i { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #94A3B8; }
         .search-box input {
             width: 100%;
-            padding: 0.65rem 2.5rem 0.65rem 1rem;
+            padding: 0.6rem 2.5rem 0.6rem 1rem;
             border: 1px solid var(--esme-gray);
             border-radius: 8px;
             font-family: 'Cairo', sans-serif;
         }
         .filter-select {
-            padding: 0.65rem 1rem;
+            padding: 0.6rem 0.9rem;
             border: 1px solid var(--esme-gray);
             border-radius: 8px;
             font-family: 'Cairo', sans-serif;
@@ -243,67 +273,80 @@
         .table-responsive { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; text-align: right; }
         thead { background: var(--esme-navy); color: var(--esme-white); }
-        th { padding: 0.95rem 0.75rem; font-size: 0.84rem; white-space: nowrap; border-bottom: 3px solid var(--esme-orange); }
-        td { padding: 0.8rem 0.75rem; border-bottom: 1px solid #E2E8F0; font-size: 0.86rem; vertical-align: middle; }
+        th { padding: 0.9rem 0.65rem; font-size: 0.82rem; white-space: nowrap; border-bottom: 3px solid var(--esme-orange); }
+        td { padding: 0.75rem 0.65rem; border-bottom: 1px solid #E2E8F0; font-size: 0.85rem; vertical-align: middle; }
         tbody tr:hover { background-color: #F8FAFC; }
+        tbody tr.selected-row { background-color: #FFF7ED; }
+
+        .row-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--esme-orange);
+        }
 
         .candidate-name { font-weight: 700; color: var(--esme-navy); font-family: 'Roboto', 'Cairo', sans-serif; display: block; }
-        .candidate-uni { font-size: 0.75rem; color: #64748B; }
+        .candidate-uni { font-size: 0.74rem; color: #64748B; }
         .sector-badge {
-            display: inline-block; padding: 2px 8px; border-radius: 5px; font-size: 0.72rem;
-            font-weight: 700; font-family: 'Roboto', sans-serif; background: rgba(3, 47, 87, 0.08); color: var(--esme-navy); margin-bottom: 3px;
+            display: inline-block; padding: 2px 7px; border-radius: 5px; font-size: 0.71rem;
+            font-weight: 700; font-family: 'Roboto', sans-serif; background: rgba(3, 47, 87, 0.08); color: var(--esme-navy); margin-bottom: 2px;
         }
         .sector-badge.second { background: rgba(224, 114, 32, 0.12); color: var(--esme-orange-hover); }
         .assigned-select {
-            padding: 5px 8px; border-radius: 6px; border: 1px solid var(--esme-navy);
-            color: var(--esme-navy); font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 0.78rem; direction: ltr;
+            padding: 4px 7px; border-radius: 6px; border: 1px solid var(--esme-navy);
+            color: var(--esme-navy); font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 0.76rem; direction: ltr;
         }
-        .score-pill { font-family: 'Roboto', sans-serif; font-weight: 700; padding: 4px 8px; border-radius: 6px; display: inline-block; font-size: 0.8rem; }
+        .score-pill { font-family: 'Roboto', sans-serif; font-weight: 700; padding: 3px 7px; border-radius: 6px; display: inline-block; font-size: 0.78rem; }
         .score-high { background: #D1FAE5; color: #065F46; }
         .score-mid { background: #FEF3C7; color: #92400E; }
         .score-low { background: #FEE2E2; color: #991B1B; }
         .score-na { background: #F1F5F9; color: #64748B; }
 
-        .status-select { padding: 5px 10px; border-radius: 20px; font-weight: 700; font-size: 0.78rem; cursor: pointer; font-family: 'Roboto', 'Cairo', sans-serif; }
+        .status-select { padding: 4px 8px; border-radius: 20px; font-weight: 700; font-size: 0.76rem; cursor: pointer; font-family: 'Roboto', 'Cairo', sans-serif; }
         .status-select.accepted { background: #D1FAE5; color: #065F46; border: 1px solid #10B981; }
         .status-select.waiting { background: #FEF3C7; color: #92400E; border: 1px solid #F59E0B; }
         .status-select.rejected { background: #FEE2E2; color: #991B1B; border: 1px solid #EF4444; }
         .status-select.hold { background: #E5E7EB; color: #374151; border: 1px solid #9CA3AF; }
 
-        .email-input { padding: 5px 8px; border: 1px solid #CBD5E1; border-radius: 6px; font-family: 'Roboto', sans-serif; font-size: 0.8rem; width: 185px; direction: ltr; }
-        .notes-input { padding: 5px 8px; border: 1px solid transparent; background: transparent; border-radius: 6px; font-family: 'Cairo', sans-serif; font-size: 0.8rem; width: 145px; }
+        .email-input { padding: 4px 7px; border: 1px solid #CBD5E1; border-radius: 6px; font-family: 'Roboto', sans-serif; font-size: 0.78rem; width: 175px; direction: ltr; }
+        .notes-input { padding: 4px 7px; border: 1px solid transparent; background: transparent; border-radius: 6px; font-family: 'Cairo', sans-serif; font-size: 0.78rem; width: 135px; }
         .notes-input:hover, .notes-input:focus { border-color: #CBD5E1; background: #fff; outline: none; }
 
-        .icon-btn { width: 32px; height: 32px; border-radius: 6px; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; }
+        .icon-btn { width: 32px; height: 32px; border-radius: 6px; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; transition: 0.15s; }
         .btn-wa { background: #DCFCE7; color: #15803D; }
+        .btn-wa:hover { background: #15803D; color: #fff; }
         .btn-mail { background: rgba(224, 114, 32, 0.15); color: var(--esme-orange); }
-        .sent-badge { font-size: 0.7rem; background: #DBEAFE; color: #1E40AF; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 3px; }
+        .btn-mail:hover { background: var(--esme-orange); color: #fff; }
+
+        .sent-badge { font-size: 0.68rem; background: #DBEAFE; color: #1E40AF; padding: 1px 6px; border-radius: 4px; display: inline-block; margin-top: 2px; margin-left: 3px; }
+        .wa-badge { font-size: 0.68rem; background: #DCFCE7; color: #166534; padding: 1px 6px; border-radius: 4px; display: inline-block; margin-top: 2px; }
 
         .view-section { display: none; }
         .view-section.active { display: block; }
-        .email-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .groups-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .email-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+        .groups-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1rem; }
         @media (max-width: 992px) { .email-grid { grid-template-columns: 1fr; } }
 
-        .panel-card { background: var(--esme-white); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 4px solid var(--esme-navy); margin-bottom: 1.5rem; }
+        .panel-card { background: var(--esme-white); border-radius: 12px; padding: 1.4rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 4px solid var(--esme-navy); margin-bottom: 1.4rem; }
         .panel-card.orange-top { border-top-color: var(--esme-orange); }
-        .panel-card h2 { color: var(--esme-navy); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
-        .form-group { margin-bottom: 1rem; text-align: right; }
-        .form-group label { display: block; font-weight: 700; font-size: 0.86rem; margin-bottom: 0.35rem; color: var(--esme-navy); }
-        .form-control { width: 100%; padding: 0.65rem 0.8rem; border: 1px solid var(--esme-gray); border-radius: 8px; font-family: 'Roboto', 'Cairo', sans-serif; font-size: 0.9rem; }
-        textarea.form-control { min-height: 240px; resize: vertical; direction: ltr; text-align: left; font-family: 'Roboto', sans-serif; line-height: 1.55; }
+        .panel-card.green-top { border-top-color: var(--wa-green); }
+        .panel-card h2 { color: var(--esme-navy); font-size: 1.12rem; margin-bottom: 0.9rem; display: flex; align-items: center; gap: 10px; }
+        .form-group { margin-bottom: 0.9rem; text-align: right; }
+        .form-group label { display: block; font-weight: 700; font-size: 0.84rem; margin-bottom: 0.3rem; color: var(--esme-navy); }
+        .form-control { width: 100%; padding: 0.6rem 0.8rem; border: 1px solid var(--esme-gray); border-radius: 8px; font-family: 'Roboto', 'Cairo', sans-serif; font-size: 0.88rem; }
+        textarea.form-control { min-height: 210px; resize: vertical; direction: ltr; text-align: left; font-family: 'Roboto', 'Cairo', sans-serif; line-height: 1.55; }
 
-        .variable-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; direction: ltr; }
-        .var-tag { background: #F1F5F9; border: 1px dashed var(--esme-navy); color: var(--esme-navy); padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; font-family: 'Roboto', monospace; font-weight: 700; cursor: pointer; }
+        .variable-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; direction: ltr; }
+        .var-tag { background: #F1F5F9; border: 1px dashed var(--esme-navy); color: var(--esme-navy); padding: 3px 9px; border-radius: 6px; font-size: 0.76rem; font-family: 'Roboto', monospace; font-weight: 700; cursor: pointer; }
         .var-tag:hover { background: var(--esme-orange); border-color: var(--esme-orange); color: #fff; }
 
         .modal-overlay { position: fixed; inset: 0; background: rgba(3, 47, 87, 0.65); backdrop-filter: blur(3px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
         .modal-overlay.open { display: flex; }
-        .modal-box { background: var(--esme-white); border-radius: 14px; max-width: 820px; width: 100%; max-height: 92vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.25); border-top: 6px solid var(--esme-orange); padding: 1.5rem; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E2E8F0; padding-bottom: 0.9rem; margin-bottom: 1rem; }
+        .modal-box { background: var(--esme-white); border-radius: 14px; max-width: 840px; width: 100%; max-height: 92vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.25); border-top: 6px solid var(--esme-orange); padding: 1.5rem; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E2E8F0; padding-bottom: 0.8rem; margin-bottom: 1rem; }
         .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748B; }
-        .recipient-list { max-height: 220px; overflow-y: auto; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.5rem; margin-bottom: 1rem; background: #F8FAFC; }
-        .recipient-item { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0.75rem; border-bottom: 1px solid #E2E8F0; background: #fff; border-radius: 6px; margin-bottom: 4px; }
+        .recipient-list { max-height: 250px; overflow-y: auto; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.5rem; margin-bottom: 1rem; background: #F8FAFC; }
+        .recipient-item { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0.75rem; border-bottom: 1px solid #E2E8F0; background: #fff; border-radius: 6px; margin-bottom: 4px; gap: 8px; flex-wrap: wrap; }
 
         .toast { position: fixed; bottom: 24px; left: 24px; background: var(--esme-navy); color: #fff; padding: 12px 20px; border-radius: 8px; border-right: 4px solid var(--esme-orange); box-shadow: 0 8px 20px rgba(0,0,0,0.2); display: none; z-index: 6000; font-weight: 700; }
     </style>
@@ -317,7 +360,6 @@
             <h2>ESME Cairo Recruitment Portal</h2>
             <p>نظام محمي — مخصص فقط لأعضاء البورد والـ Heads المصرح لهم</p>
 
-            <!-- Step 1: Enter Authorized Email -->
             <div id="authStep1">
                 <div class="form-group">
                     <label>البريد الإلكتروني المسجل في قائمة الصلاحيات (Authorized Email):</label>
@@ -328,7 +370,6 @@
                 </button>
             </div>
 
-            <!-- Step 2: Enter 6-Digit OTP -->
             <div id="authStep2" style="display: none;">
                 <div class="form-group">
                     <label>أدخل الكود المكون من 6 أرقام الذي وصلك على الإيميل:</label>
@@ -357,6 +398,9 @@
             </div>
         </div>
         <div class="user-info-bar">
+            <button class="btn btn-orange" style="padding: 5px 12px; font-size: 0.8rem;" onclick="pullFromGoogleSheet()">
+                <i class="fa-solid fa-arrows-rotate"></i> سحب أحدث داتا من الشيت
+            </button>
             <span id="loggedUserBadge" class="slogan-badge"><i class="fa-solid fa-user-shield"></i> Not Logged In</span>
             <button class="btn btn-danger" style="padding: 5px 12px; font-size: 0.8rem;" onclick="logoutPortal()">
                 <i class="fa-solid fa-right-from-bracket"></i> خروج
@@ -409,10 +453,10 @@
         <div class="top-controls">
             <div class="tabs">
                 <button class="tab-btn active" id="tabBtnCandidates" onclick="switchTab('candidates', this)">
-                    <i class="fa-solid fa-table-list"></i> جدول المتقدمين وتحديد اللجان
+                    <i class="fa-solid fa-table-list"></i> جدول المتقدمين والإرسال المحدد
                 </button>
                 <button class="tab-btn" id="tabBtnGroups" onclick="switchTab('groups', this)">
-                    <i class="fa-brands fa-whatsapp"></i> لينكات جروبات الواتساب وقوالب الإيميل (English)
+                    <i class="fa-solid fa-sliders"></i> قوالب الإيميل والواتساب ولينكات الجروبات
                 </button>
                 <button class="tab-btn" id="tabBtnAccess" onclick="switchTab('access', this)">
                     <i class="fa-solid fa-user-lock"></i> إدارة الصلاحيات (Access Control)
@@ -420,23 +464,49 @@
             </div>
 
             <div class="action-buttons">
-                <button class="btn btn-success" onclick="openBulkModal('accepted')">
-                    <i class="fa-solid fa-paper-plane"></i> إرسال إيميل القبول للمقبولين
+                <button class="btn btn-orange" onclick="openSelectedSendModal('email')">
+                    <i class="fa-solid fa-envelope-circle-check"></i> إرسال إيميل للمحددين فقط (<span id="btnSelEmailCount">0</span>)
                 </button>
-                <button class="btn btn-danger" onclick="openBulkModal('Rejected')">
-                    <i class="fa-solid fa-envelope-circle-check"></i> إرسال إيميل الاعتذار للمرفوضين
+                <button class="btn btn-wa-solid" onclick="openSelectedSendModal('whatsapp')">
+                    <i class="fa-brands fa-whatsapp"></i> إرسال واتساب للمحددين (<span id="btnSelWaCount">0</span>)
                 </button>
                 <button class="btn btn-navy" onclick="syncToCloud()">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> حفظ ومزامنة للسحابة الآن
+                    <i class="fa-solid fa-cloud-arrow-up"></i> حفظ للسحابة
                 </button>
                 <button class="btn btn-outline" onclick="exportToCSV()">
-                    <i class="fa-solid fa-file-csv"></i> تصدير CSV
+                    <i class="fa-solid fa-file-csv"></i> CSV
                 </button>
             </div>
         </div>
 
         <!-- VIEW 1: CANDIDATES TABLE -->
         <div id="view-candidates" class="view-section active">
+            <!-- Smart Selection Toolbar -->
+            <div class="selection-bar">
+                <div class="selection-info">
+                    <i class="fa-solid fa-check-double" style="color:var(--esme-orange);"></i>
+                    <span>الأشخاص المحددين للإرسال الآن:</span>
+                    <span class="selection-count-badge" id="selectedCountBadge">0</span>
+                </div>
+                <div class="quick-select-btns">
+                    <button class="btn-xs" onclick="quickSelect('accepted_unsent')">
+                        ✅ تحديد المقبولين الجدد (لم يُرسل لهم إيميل)
+                    </button>
+                    <button class="btn-xs" onclick="quickSelect('accepted_all')">
+                        🎉 تحديد كل المقبولين
+                    </button>
+                    <button class="btn-xs" onclick="quickSelect('rejected_unsent')">
+                        ❌ تحديد المرفوضين الجدد (لم يُرسل لهم)
+                    </button>
+                    <button class="btn-xs" onclick="quickSelect('visible')">
+                        ☑️ تحديد المعروضين في الجدول
+                    </button>
+                    <button class="btn-xs" onclick="quickSelect('none')" style="color:#DC2626; border-color:#FCA5A5;">
+                        إلغاء التحديد
+                    </button>
+                </div>
+            </div>
+
             <div class="filters-row">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -459,6 +529,12 @@
                     <option value="MC">MC: Marketing & Communication</option>
                     <option value="SID">SID: Strategy & Institutional Dev</option>
                 </select>
+
+                <select id="sentFilter" class="filter-select" onchange="renderTable()">
+                    <option value="all">حالة الإرسال (الكل)</option>
+                    <option value="unsent_email">لم يُرسل لهم إيميل بعد</option>
+                    <option value="sent_email">تم إرسال إيميل لهم ✅</option>
+                </select>
             </div>
 
             <div class="table-card">
@@ -466,16 +542,19 @@
                     <table>
                         <thead>
                             <tr>
+                                <th style="width:40px; text-align:center;">
+                                    <input type="checkbox" class="row-checkbox" id="masterCheckbox" onchange="toggleSelectAllVisible(this.checked)" title="تحديد/إلغاء تحديد الكل">
+                                </th>
                                 <th>#</th>
                                 <th>الاسم والجامعة</th>
                                 <th>البريد الإلكتروني (E-Mail)</th>
-                                <th>الواتساب</th>
-                                <th>الرغبات (1st & 2nd)</th>
-                                <th>اللجنة المقبول بها (تحدد جروب الواتساب)</th>
-                                <th>المجموع (10)</th>
+                                <th>رقم الواتساب</th>
+                                <th>الرغبات</th>
+                                <th>اللجنة المقبول بها</th>
+                                <th>المجموع</th>
                                 <th>القرار النهائي</th>
-                                <th>ملاحظات / سبب الرفض</th>
-                                <th>معاينة وإرسال</th>
+                                <th>ملاحظات</th>
+                                <th>إرسال فردي فوري (إيميل / واتساب)</th>
                             </tr>
                         </thead>
                         <tbody id="candidatesTbody"></tbody>
@@ -484,10 +563,14 @@
             </div>
         </div>
 
-        <!-- VIEW 2: WHATSAPP GROUPS & ENGLISH TEMPLATES -->
+        <!-- VIEW 2: WHATSAPP GROUPS, EMAIL TEMPLATES & WHATSAPP TEMPLATES -->
         <div id="view-groups" class="view-section">
+            <!-- Sector WhatsApp Group Links -->
             <div class="panel-card orange-top">
-                <h2><i class="fa-brands fa-whatsapp" style="color: #16A34A; font-size: 1.4rem;"></i> روابط جروبات الواتساب لكل لجنة (Sector WhatsApp Group Links)</h2>
+                <h2><i class="fa-brands fa-whatsapp" style="color: #16A34A; font-size: 1.4rem;"></i> 1. روابط جروبات الواتساب لكل لجنة (Sector WhatsApp Group Links)</h2>
+                <p style="font-size: 0.85rem; color: #475569; margin-bottom: 1rem;">
+                    ضع لينك جروب كل لجنة هنا، وسيتم تعويضه تلقائياً مكان المتغير <code>{whatsapp_link}</code> في كلٍ من الإيميل ورسالة الواتساب!
+                </p>
                 <div class="groups-grid">
                     <div class="form-group">
                         <label>💼 BF: Business & Finance Group Link:</label>
@@ -517,9 +600,10 @@
                 <button class="btn btn-orange" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ ومزامنة الروابط</button>
             </div>
 
+            <!-- Email Templates -->
             <div class="email-grid">
                 <div class="panel-card">
-                    <h2><i class="fa-solid fa-award" style="color: var(--status-accepted);"></i> Acceptance Email Template (English Only)</h2>
+                    <h2><i class="fa-solid fa-envelope" style="color: var(--status-accepted);"></i> 2. قالب إيميل القبول (Acceptance Email - English)</h2>
                     <div class="variable-tags">
                         <span class="var-tag" onclick="insertVar('accBody', '{name}')">{name}</span>
                         <span class="var-tag" onclick="insertVar('accBody', '{sector}')">{sector}</span>
@@ -550,11 +634,11 @@ Best Regards,
 Sameh Ibrahem
 Vice President | ESME Cairo University Student Chapter</textarea>
                     </div>
-                    <button class="btn btn-navy" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ القالب</button>
+                    <button class="btn btn-navy" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ قالب إيميل القبول</button>
                 </div>
 
                 <div class="panel-card">
-                    <h2><i class="fa-solid fa-envelope" style="color: var(--status-rejected);"></i> Rejection Email Template (English Only)</h2>
+                    <h2><i class="fa-solid fa-envelope" style="color: var(--status-rejected);"></i> 3. قالب إيميل الاعتذار (Rejection Email - English)</h2>
                     <div class="variable-tags">
                         <span class="var-tag" onclick="insertVar('rejBody', '{name}')">{name}</span>
                         <span class="var-tag" onclick="insertVar('rejBody', '{sector}')">{sector}</span>
@@ -579,7 +663,52 @@ Best Regards,
 Sameh Ibrahem
 Vice President | ESME Cairo University Student Chapter</textarea>
                     </div>
-                    <button class="btn btn-navy" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ القالب</button>
+                    <button class="btn btn-navy" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ قالب إيميل الاعتذار</button>
+                </div>
+            </div>
+
+            <!-- WhatsApp Message Templates -->
+            <div class="email-grid">
+                <div class="panel-card green-top">
+                    <h2><i class="fa-brands fa-whatsapp" style="color: var(--wa-green);"></i> 4. قالب رسالة واتساب للمقبولين (Accepted WhatsApp Template)</h2>
+                    <div class="variable-tags">
+                        <span class="var-tag" onclick="insertVar('waAccBody', '{name}')">{name}</span>
+                        <span class="var-tag" onclick="insertVar('waAccBody', '{sector}')">{sector}</span>
+                        <span class="var-tag" onclick="insertVar('waAccBody', '{whatsapp_link}')">{whatsapp_link}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp Message (Accepted):</label>
+                        <textarea id="waAccBody" class="form-control" style="min-height: 180px;">Hello {name}! 👋🎉
+
+Congratulations! You have been officially *ACCEPTED* into *ESME Cairo University Student Chapter* for Season 2026/2027 in the *({sector})* sector! 🚀
+
+Please join your sector's official WhatsApp group right now through this link:
+{whatsapp_link}
+
+Welcome to the family! 🧡💙
+*BE POSITIVE VALUABLES*</textarea>
+                    </div>
+                    <button class="btn btn-wa-solid" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ قالب واتساب القبول</button>
+                </div>
+
+                <div class="panel-card green-top">
+                    <h2><i class="fa-brands fa-whatsapp" style="color: var(--status-rejected);"></i> 5. قالب رسالة واتساب للمرفوضين (Rejected WhatsApp Template)</h2>
+                    <div class="variable-tags">
+                        <span class="var-tag" onclick="insertVar('waRejBody', '{name}')">{name}</span>
+                        <span class="var-tag" onclick="insertVar('waRejBody', '{sector}')">{sector}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp Message (Rejected):</label>
+                        <textarea id="waRejBody" class="form-control" style="min-height: 180px;">Hello {name},
+
+Thank you for applying to *ESME Cairo University Student Chapter* (2026/2027) for the *({sector})* sector.
+
+Due to the limited spots available this season, we regret that we won't be able to proceed with your application at this time. We truly appreciate your effort and hope to see you in our upcoming events and future recruitment waves! 🌟
+
+Best wishes,
+*ESME Cairo Team*</textarea>
+                    </div>
+                    <button class="btn btn-wa-solid" onclick="syncToCloud()"><i class="fa-solid fa-floppy-disk"></i> حفظ قالب واتساب الاعتذار</button>
                 </div>
             </div>
         </div>
@@ -588,9 +717,6 @@ Vice President | ESME Cairo University Student Chapter</textarea>
         <div id="view-access" class="view-section">
             <div class="panel-card orange-top" style="max-width: 750px;">
                 <h2><i class="fa-solid fa-user-shield" style="color: var(--esme-orange);"></i> إدارة قائمة الإيميلات المصرح لها بالدخول والعمل (Authorized Users)</h2>
-                <p style="font-size: 0.9rem; color: #475569; margin-bottom: 1rem;">
-                    أي شخص غير موجود في هذه القائمة لن يتمكن من فتح البرنامج أو رؤية الداتا حتى لو قام بتحميل الكود من GitHub. أضف إيميلات الـ Heads أو البورد هنا:
-                </p>
                 <div style="display: flex; gap: 10px; margin-bottom: 1.2rem;">
                     <input type="email" id="newAllowedEmail" class="form-control" dir="ltr" placeholder="head_email@gmail.com">
                     <button class="btn btn-orange" onclick="addAllowedEmail()"><i class="fa-solid fa-plus"></i> إضافة إيميل</button>
@@ -600,62 +726,79 @@ Vice President | ESME Cairo University Student Chapter</textarea>
         </div>
     </div>
 
-    <!-- Single Email Preview & Live Edit Modal -->
+    <!-- Single Email / WhatsApp Live Preview & Edit Modal -->
     <div id="singlePreviewModal" class="modal-overlay">
         <div class="modal-box" style="max-width: 700px;">
             <div class="modal-header">
-                <h3 id="singlePreviewTitle">معاينة وتعديل الإيميل قبل الإرسال (English)</h3>
+                <h3 id="singlePreviewTitle">معاينة وتعديل الرسالة الفردية قبل الإرسال</h3>
                 <button class="close-btn" onclick="closeSinglePreviewModal()">&times;</button>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="previewEmailRow">
                 <label>To Email:</label>
                 <input type="email" id="previewToEmail" class="form-control" dir="ltr">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="previewSubjectRow">
                 <label>Subject (قابل للتعديل):</label>
                 <input type="text" id="previewSubject" class="form-control" dir="ltr">
             </div>
             <div class="form-group">
-                <label>Body (English - يمكنك التعديل بحرية قبل الإرسال):</label>
-                <textarea id="previewBody" class="form-control" style="min-height: 250px;"></textarea>
+                <label>Message Body (يمكنك التعديل بحرية قبل الإرسال لهذا الشخص):</label>
+                <textarea id="previewBody" class="form-control" style="min-height: 230px;"></textarea>
             </div>
             <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
-                <button class="btn btn-orange" onclick="sendSingleViaBackend()">
-                    <i class="fa-solid fa-bolt"></i> إرسال فوري عبر السيرفر (Auto Send)
+                <button class="btn btn-orange" id="btnModalSendEmail" onclick="sendSingleViaBackend()">
+                    <i class="fa-solid fa-bolt"></i> إرسال الإيميل فوراً عبر السيرفر (Auto Send)
                 </button>
-                <button class="btn btn-navy" onclick="confirmSingleSendGmail()">
-                    <i class="fa-brands fa-google"></i> فتح في Gmail
+                <button class="btn btn-wa-solid" id="btnModalSendWa" onclick="sendSingleWhatsAppNow()">
+                    <i class="fa-brands fa-whatsapp"></i> إرسال عبر WhatsApp الآن
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Bulk Send Modal -->
-    <div id="bulkModal" class="modal-overlay">
+    <!-- Selected Candidates Bulk Email / WhatsApp Modal -->
+    <div id="selectedSendModal" class="modal-overlay">
         <div class="modal-box">
             <div class="modal-header">
-                <h3 id="bulkModalTitle">مراجعة وتعديل الإيميل الجماعي قبل الإرسال</h3>
-                <button class="close-btn" onclick="closeBulkModal()">&times;</button>
+                <h3 id="selectedModalTitle">إرسال للأشخاص المحددين</h3>
+                <button class="close-btn" onclick="closeSelectedSendModal()">&times;</button>
             </div>
-            <div id="bulkModalSummary" style="margin-bottom: 0.8rem; font-size: 0.9rem;"></div>
 
-            <div style="background: #F8FAFC; padding: 1rem; border-radius: 10px; border: 1px solid #E2E8F0; margin-bottom: 1rem;">
-                <strong style="color:var(--esme-navy); font-size:0.88rem; display:block; margin-bottom:6px;">
-                    ✏️ يمكنك تعديل النص الإنجليزي هنا مباشرة قبل الإرسال للجميع (يتم تعويض <code>{name}</code> و <code>{sector}</code> و <code>{whatsapp_link}</code> تلقائياً لكل فرد):
+            <div id="selectedModalSummary" style="margin-bottom: 0.8rem; font-size: 0.9rem;"></div>
+
+            <!-- Template Type Selector for Selected Candidates -->
+            <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px; flex-wrap:wrap;">
+                <label style="font-weight:700; color:var(--esme-navy); font-size:0.88rem;">نوع القالب المراد استخدامه للمحددين:</label>
+                <select id="bulkTemplateModeSelect" class="filter-select" onchange="loadBulkModalTemplateText()">
+                    <option value="auto">تلقائي حسب حالة كل متقدم (المقبول له تهنئة والمرفوض له اعتذار)</option>
+                    <option value="accepted">قالب القبول والتهنئة للجميع (Acceptance Template)</option>
+                    <option value="Rejected">قالب الاعتذار للجميع (Rejection Template)</option>
+                </select>
+            </div>
+
+            <div id="bulkCustomEditorBox" style="background: #F8FAFC; padding: 1rem; border-radius: 10px; border: 1px solid #E2E8F0; margin-bottom: 1rem;">
+                <strong style="color:var(--esme-navy); font-size:0.85rem; display:block; margin-bottom:6px;">
+                    ✏️ معاينة وتعديل النص (المتغيرات <code>{name}</code> و <code>{sector}</code> و <code>{whatsapp_link}</code> تُعوض تلقائياً لكل شخص):
                 </strong>
-                <div class="form-group" style="margin-bottom: 0.6rem;">
+                <div class="form-group" id="bulkSubjectGroup" style="margin-bottom: 0.6rem;">
                     <input type="text" id="bulkLiveSubject" class="form-control" dir="ltr">
                 </div>
                 <div class="form-group" style="margin-bottom: 0;">
-                    <textarea id="bulkLiveBody" class="form-control" style="min-height: 170px;"></textarea>
+                    <textarea id="bulkLiveBody" class="form-control" style="min-height: 150px;"></textarea>
                 </div>
             </div>
 
-            <div class="recipient-list" id="bulkRecipientList"></div>
+            <label style="font-weight:700; font-size:0.86rem; color:var(--esme-navy); display:block; margin-bottom:6px;">
+                قائمة الأشخاص المحددين الذين سيتم الإرسال لهم الآن:
+            </label>
+            <div class="recipient-list" id="selectedRecipientList"></div>
 
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; border-top: 1px solid #E2E8F0; padding-top: 1rem;">
-                <button class="btn btn-orange" onclick="executeBulkBackendSend()">
-                    <i class="fa-solid fa-bolt"></i> إرسال أوتوماتيكي مخصص لكل فرد بلينك لجنته الآن
+                <button class="btn btn-orange" id="btnExecSelectedEmail" onclick="executeSelectedEmailSend()">
+                    <i class="fa-solid fa-bolt"></i> إرسال الإيميلات للمحددين الآن تلقائياً
+                </button>
+                <button class="btn btn-wa-solid" id="btnExecSelectedWa" onclick="startWhatsAppQueueNext()">
+                    <i class="fa-brands fa-whatsapp"></i> إرسال واتساب للمحددين بالتتابع السريع (<span id="waQueueProgress">ابدأ</span>)
                 </button>
             </div>
         </div>
@@ -664,7 +807,6 @@ Vice President | ESME Cairo University Student Chapter</textarea>
     <div id="toast" class="toast"></div>
 
     <script>
-        // ✅ تم ربط اللينك الخاص بك مباشرة هنا:
         const BACKEND_URL = "https://script.google.com/macros/s/AKfycbzADRf7VQ0zHMfWWFrAAm3yqL7t9oWfnGt9Tbn1cu3eDimnsMKhp33vp4qCdIBoqS67/exec";
 
         const SECTORS = [
@@ -675,54 +817,14 @@ Vice President | ESME Cairo University Student Chapter</textarea>
             { code: "SID", label: "SID: Strategy & Institutional Development" }
         ];
 
-        const INITIAL_CANDIDATES = [
-            { id: 1, name: "Youssf ashraf ali mohammed", uni: "Cairo University", phone: "+201145319430", email: "yousfabozad1@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "3.9", tech: "4.1", status: "accepted", notes: "" },
-            { id: 2, name: "Orkeed Mohamed Abdel- Mawgoud", uni: "Cairo University", phone: "+201211106283", email: "orkeedomran11@gmail.com", pref1: "BF: Business & finance", pref2: "OSC & digital transformation", assignedSector: "BF", nonTech: "4", tech: "4.8", status: "accepted", notes: "HR at TCCD" },
-            { id: 3, name: "Omar ahmed mohmed amin", uni: "Egyptian Chinese University", phone: "+201017742420", email: "33omarahmed99@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "3", tech: "3.1", status: "waiting list", notes: "" },
-            { id: 4, name: "Adham Emad Eldin Omar Abdelhady", uni: "Cairo University", phone: "+201068736687", email: "adhamemad555555@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "3.8", tech: "4.8", status: "waiting list", notes: "" },
-            { id: 5, name: "Mohamed samy Shawky Mohamed", uni: "Cairo University", phone: "+201111546417", email: "mohammedsamy4534@gmail.com", pref1: "BF: Business & finance", pref2: "TE: Technical & Engineering", assignedSector: "BF", nonTech: "3.5", tech: "3.8", status: "waiting list", notes: "" },
-            { id: 6, name: "Mohanad Yasser Ahmed Yacub", uni: "Cairo University", phone: "+201030078177", email: "mohanadyasser054@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "3.5", tech: "4.5", status: "waiting list", notes: "" },
-            { id: 7, name: "Mahmoud Ahmed Mahmoud Ibrahim sabra", uni: "Egyptian Chinese University", phone: "+201145063496", email: "Mahmoud.ah53335@gmail.com", pref1: "BF: Business & finance", pref2: "MC: Marketing & communication", assignedSector: "BF", nonTech: "1", tech: "3.5", status: "Rejected", notes: "تغير الميعاد لحظة meeting وعدم الكفاءة" },
-            { id: 8, name: "Ahd Ahmed Mahmoud Hassan", uni: "Cairo University", phone: "+201093288859", email: "ahd.hassan06@eng-st.cu.edu.eg", pref1: "OSC & digital transformation", pref2: "MC: Marketing & communication", assignedSector: "OSC", nonTech: "4", tech: "6", status: "waiting list", notes: "" },
-            { id: 9, name: "Ibrahim Medhat Mohamed Reda", uni: "Cairo University", phone: "+201116602538", email: "1br4hhm@gmail.com", pref1: "OSC & digital transformation", pref2: "BF: Business & finance", assignedSector: "OSC", nonTech: "4", tech: "6", status: "waiting list", notes: "" },
-            { id: 10, name: "Habiba Toba Eid Suleiman", uni: "Fayoum University", phone: "+201068595308", email: "habibatoba40@gmail.com", pref1: "OSC & digital transformation", pref2: "TE: Technical & Engineering", assignedSector: "OSC", nonTech: "3", tech: "4", status: "waiting list", notes: "" },
-            { id: 11, name: "Karem Ahmed Khairy Abdelghfar", uni: "Cairo University", phone: "+201554204461", email: "karemelhwary5@gmail.com", pref1: "OSC & digital transformation", pref2: "OSC & digital transformation", assignedSector: "OSC", nonTech: "3", tech: "4", status: "waiting list", notes: "" },
-            { id: 12, name: "Esraa sherif biomy fouda", uni: "Cairo University", phone: "+201117216649", email: "israafouda2000@gmail.com", pref1: "OSC & digital transformation", pref2: "SID: Strategy & Institutional Development", assignedSector: "OSC", nonTech: "2", tech: "5", status: "waiting list", notes: "" },
-            { id: 13, name: "Youssef Mostafa Elsayed Mohamed El-Tahtawy", uni: "Cairo University", phone: "+201115103843", email: "youssef.el-tahtawy07@eng-st.cu.edu.eg", pref1: "OSC & digital transformation", pref2: "BF: Business & finance", assignedSector: "OSC", nonTech: "0", tech: "0", status: "Rejected", notes: "غير رأيه قبل الـ interview" },
-            { id: 14, name: "Omar Abdalaziz Lotfi Abdalaziz", uni: "Cairo University", phone: "+201027241983", email: "abdalazizomar602@gmail.com", pref1: "OSC & digital transformation", pref2: "TE: Technical & Engineering", assignedSector: "OSC", nonTech: "0", tech: "0", status: "Rejected", notes: "غير رأيه قبل الانترفيو" },
-            { id: 15, name: "sondos mohamed amer shehata", uni: "Cairo University", phone: "+201126046407", email: "sonomar4578@gmail.com", pref1: "OSC & digital transformation", pref2: "MC: Marketing & communication", assignedSector: "OSC", nonTech: "0", tech: "0", status: "Rejected", notes: "غير رأيه قبل الانترفيو" },
-            { id: 16, name: "Ahmed Atef", uni: "Cairo University", phone: "+201095028288", email: "", pref1: "TE: Technical & Engineering", pref2: "TE: Technical & Engineering", assignedSector: "TE", nonTech: "", tech: "6", status: "accepted", notes: "توصية مباشرة" },
-            { id: 17, name: "Ahmed Ashraf Abbas Sayed", uni: "Cairo University", phone: "+201007515873", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "", tech: "", status: "accepted", notes: "توصية مباشرة" },
-            { id: 18, name: "Yahia Hassan Ali Abo Shanab", uni: "Al-Azhar University", phone: "+201013278388", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "2.5", tech: "5", status: "waiting list", notes: "" },
-            { id: 19, name: "Jana Ahmed Najeeb Othman", uni: "Cairo University", phone: "+201093726778", email: "jo8164861@gmail.com", pref1: "TE: Technical & Engineering", pref2: "MC: Marketing & communication", assignedSector: "TE", nonTech: "3.5", tech: "6", status: "waiting list", notes: "موجودة في doss sector oc" },
-            { id: 20, name: "Shahd saber abdelmotalb", uni: "Cairo University", phone: "+201117892128", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "3.5", tech: "6", status: "waiting list", notes: "" },
-            { id: 21, name: "Aboubakr Hamdy Safwat Elzamzamy", uni: "Al-Azhar University", phone: "+201065841636", email: "", pref1: "TE: Technical & Engineering", pref2: "TE: Technical & Engineering", assignedSector: "TE", nonTech: "3", tech: "6", status: "waiting list", notes: "" },
-            { id: 22, name: "Yousef Ahmed Mohammed Mohammed", uni: "Cairo University", phone: "+201148892840", email: "", pref1: "TE: Technical & Engineering", pref2: "MC: Marketing & communication", assignedSector: "TE", nonTech: "3.5", tech: "5", status: "waiting list", notes: "" },
-            { id: 23, name: "Jolie Emad Maher Azmy", uni: "Cairo University", phone: "+201226626588", email: "", pref1: "TE: Technical & Engineering", pref2: "SID: Strategy & Institutional Development", assignedSector: "TE", nonTech: "3.5", tech: "5", status: "waiting list", notes: "موجودة مع IEEE بس لجنة مختلفة" },
-            { id: 24, name: "Mennatallah ahmed mohamed", uni: "Cairo University", phone: "+201111086390", email: "Elhagamona391@gmail.com", pref1: "TE: Technical & Engineering", pref2: "SID: Strategy & Institutional Development", assignedSector: "TE", nonTech: "2.5", tech: "5", status: "waiting list", notes: "" },
-            { id: 25, name: "Omar mokhtar abdelalim Mamoun boshnaq", uni: "Capital University", phone: "+201224839297", email: "boshnaq20@gmail.com", pref1: "TE: Technical & Engineering", pref2: "TE: Technical & Engineering", assignedSector: "TE", nonTech: "1", tech: "2", status: "Rejected", notes: "إجاباته مش محددة + عدم الالتزام بالميعاد" },
-            { id: 26, name: "Mazen tamer Mohamed danyal", uni: "Cairo University", phone: "+201122866681", email: "mazentamerdanyal@gmail.com", pref1: "TE: Technical & Engineering", pref2: "MC: Marketing & communication", assignedSector: "TE", nonTech: "", tech: "", status: "Rejected", notes: "لم يحضر" },
-            { id: 27, name: "Ahmed Mohammed Ahmed Grisha", uni: "Cairo University", phone: "+201025649452", email: "", pref1: "TE: Technical & Engineering", pref2: "BF: Business & finance", assignedSector: "TE", nonTech: "2.5", tech: "4", status: "Rejected", notes: "غير متوافق مع مجاله" },
-            { id: 28, name: "bahgat ramadan bahgat mohammed", uni: "Cairo University", phone: "+201095175705", email: "", pref1: "TE: Technical & Engineering", pref2: "SID: Strategy & Institutional Development", assignedSector: "TE", nonTech: "", tech: "", status: "Rejected", notes: "hold" },
-            { id: 29, name: "Abdallah mahmoud rashed", uni: "Cairo University", phone: "+201143698394", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "hold" },
-            { id: 30, name: "Paula Habib", uni: "Cairo University", phone: "+201034712757", email: "", pref1: "TE: Technical & Engineering", pref2: "OSC & digital transformation", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "hold" },
-            { id: 31, name: "Ahmed Ragab soltan Abdel_Azim", uni: "Cairo University", phone: "+201020003772", email: "", pref1: "TE: Technical & Engineering", pref2: "SID: Strategy & Institutional Development", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "hold" },
-            { id: 32, name: "Anas Abdelhaseeb Abdelraheem sabra", uni: "Cairo University", phone: "+201012768723", email: "", pref1: "TE: Technical & Engineering", pref2: "BF: Business & finance", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "hold" },
-            { id: 33, name: "Ahmed Sherif Mohamed Reda", uni: "Cairo University", phone: "+201097426484", email: "", pref1: "TE: Technical & Engineering", pref2: "MC: Marketing & communication", assignedSector: "TE", nonTech: "", tech: "", status: "hold", notes: "لم يتم تقييمه بعد" },
-            { id: 34, name: "Rawan Mesbah Essam Mesbah", uni: "New Cairo Tech University", phone: "+201032390228", email: "", pref1: "MC: Marketing & communication", pref2: "MC: Marketing & communication", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "عدم حضور الـ interview" },
-            { id: 35, name: "Aya tullah Osama Mohamed Nabih abdelatty", uni: "Cairo University", phone: "+201000428458", email: "", pref1: "MC: Marketing & communication", pref2: "BF: Business & finance", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "عدم حضور الـ interview" },
-            { id: 36, name: "Rofida Shaaban Abdallah Hassan", uni: "Cairo University", phone: "+201010942778", email: "", pref1: "MC: Marketing & communication", pref2: "SID: Strategy & Institutional Development", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "شافت إنها مش هتقدر تعمل balance" },
-            { id: 37, name: "Mohamed ismail ali ismail", uni: "Cairo University", phone: "+201117104379", email: "", pref1: "MC: Marketing & communication", pref2: "OSC & digital transformation", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "عدم حضور الـ interview" },
-            { id: 38, name: "Amr Alaa Abdelrahim Hamed", uni: "Cairo University", phone: "+201022339983", email: "", pref1: "MC: Marketing & communication", pref2: "BF: Business & finance", assignedSector: "MC", nonTech: "", tech: "", status: "Rejected", notes: "عمل التاسك لكن لم يحضر الـ interview" },
-            { id: 39, name: "George Mosaad Adeeb Mosaad", uni: "Assiut National University", phone: "+201210152004", email: "", pref1: "MC: Marketing & communication", pref2: "MC: Marketing & communication", assignedSector: "MC", nonTech: "", tech: "", status: "hold", notes: "أجلناها للجمعة الساعة 7 بليل" }
-        ];
-
         let candidates = [];
+        let selectedIds = new Set();
         let allowedEmails = [];
         let sessionToken = localStorage.getItem('esme_session_token') || "";
         let loggedInEmail = localStorage.getItem('esme_logged_email') || "";
-        let currentBulkMode = 'accepted';
         let activeSingleCandidateId = null;
+        let currentChannel = 'email'; // 'email' or 'whatsapp'
+        let waQueueIndex = 0;
 
         async function apiCall(payload) {
             const res = await fetch(BACKEND_URL, {
@@ -739,7 +841,7 @@ Vice President | ESME Cairo University Student Chapter</textarea>
 
             const btn = document.getElementById('btnSendOtp');
             btn.disabled = true;
-            btn.innerText = 'جاري التحقق من الصلاحية وإرسال الكود...';
+            btn.innerText = 'جاري التحقق وإرسال الكود...';
 
             try {
                 const res = await apiCall({ action: 'request_otp', email: email });
@@ -751,7 +853,7 @@ Vice President | ESME Cairo University Student Chapter</textarea>
                     alert(res.message || 'غير مصرح لهذا البريد بالدخول.');
                 }
             } catch (e) {
-                alert('حدث خطأ في الاتصال بالسيرفر. تأكد من إعطاء الصلاحيات (Authorize) داخل Google Apps Script.');
+                alert('خطأ في الاتصال بالسيرفر.');
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fa-solid fa-shield-halved"></i> إرسال رمز التحقق (Send Login Code)';
@@ -800,14 +902,26 @@ Vice President | ESME Cairo University Student Chapter</textarea>
             if (cloudData && cloudData.candidates) {
                 candidates = cloudData.candidates;
                 if (cloudData.config) applyConfig(cloudData.config);
-            } else {
-                candidates = JSON.parse(JSON.stringify(INITIAL_CANDIDATES));
-                syncToCloud();
             }
-
             updateStats();
             renderTable();
             renderAllowedEmails();
+        }
+
+        async function pullFromGoogleSheet() {
+            showToast('جاري سحب أحدث البيانات من شيت جوجل...');
+            try {
+                const res = await apiCall({ action: 'get_data', token: sessionToken });
+                if (res.status === 'success' && res.appData) {
+                    candidates = res.appData.candidates || [];
+                    if (res.appData.config) applyConfig(res.appData.config);
+                    updateStats();
+                    renderTable();
+                    showToast('تم تحديث جميع البيانات من الشيت بنجاح! ✅');
+                }
+            } catch (e) {
+                alert('حدث خطأ أثناء الاتصال بالشيت.');
+            }
         }
 
         function applyConfig(cfg) {
@@ -815,6 +929,8 @@ Vice President | ESME Cairo University Student Chapter</textarea>
             if (cfg.accBody) document.getElementById('accBody').value = cfg.accBody;
             if (cfg.rejSubject) document.getElementById('rejSubject').value = cfg.rejSubject;
             if (cfg.rejBody) document.getElementById('rejBody').value = cfg.rejBody;
+            if (cfg.waAccBody) document.getElementById('waAccBody').value = cfg.waAccBody;
+            if (cfg.waRejBody) document.getElementById('waRejBody').value = cfg.waRejBody;
             ['BF', 'OSC', 'TE', 'MC', 'SID', 'GENERAL'].forEach(code => {
                 if (cfg['wa_' + code]) document.getElementById('wa_' + code).value = cfg['wa_' + code];
             });
@@ -826,6 +942,8 @@ Vice President | ESME Cairo University Student Chapter</textarea>
                 accBody: document.getElementById('accBody').value,
                 rejSubject: document.getElementById('rejSubject').value,
                 rejBody: document.getElementById('rejBody').value,
+                waAccBody: document.getElementById('waAccBody').value,
+                waRejBody: document.getElementById('waRejBody').value,
                 wa_BF: document.getElementById('wa_BF').value.trim(),
                 wa_OSC: document.getElementById('wa_OSC').value.trim(),
                 wa_TE: document.getElementById('wa_TE').value.trim(),
@@ -847,19 +965,482 @@ Vice President | ESME Cairo University Student Chapter</textarea>
                     }
                 });
                 if (res.status === 'success') {
-                    showToast('تم حفظ ومزامنة البيانات على السحابة بنجاح! ☁️✅');
-                } else if (res.status === 'unauthorized') {
-                    logoutPortal();
+                    showToast('تم حفظ ومزامنة البيانات مع الشيت والسحابة! ☁️✅');
                 }
-            } catch (e) {
-                showToast('تم الحفظ مؤقتاً');
-            }
+            } catch (e) {}
         }
 
         function logoutPortal() {
             localStorage.removeItem('esme_session_token');
             localStorage.removeItem('esme_logged_email');
             location.reload();
+        }
+
+        function updateSelectionCounters() {
+            const count = selectedIds.size;
+            document.getElementById('selectedCountBadge').innerText = count;
+            document.getElementById('btnSelEmailCount').innerText = count;
+            document.getElementById('btnSelWaCount').innerText = count;
+        }
+
+        function toggleSelectRow(id, checked) {
+            if (checked) selectedIds.add(id);
+            else selectedIds.delete(id);
+            updateSelectionCounters();
+            renderTable();
+        }
+
+        function toggleSelectAllVisible(checked) {
+            const visible = getFilteredCandidates();
+            visible.forEach(c => {
+                if (checked) selectedIds.add(c.id);
+                else selectedIds.delete(c.id);
+            });
+            updateSelectionCounters();
+            renderTable();
+        }
+
+        function quickSelect(type) {
+            selectedIds.clear();
+            if (type === 'accepted_unsent') {
+                candidates.filter(c => c.status === 'accepted' && !c.emailed).forEach(c => selectedIds.add(c.id));
+            } else if (type === 'accepted_all') {
+                candidates.filter(c => c.status === 'accepted').forEach(c => selectedIds.add(c.id));
+            } else if (type === 'rejected_unsent') {
+                candidates.filter(c => c.status === 'Rejected' && !c.emailed).forEach(c => selectedIds.add(c.id));
+            } else if (type === 'visible') {
+                getFilteredCandidates().forEach(c => selectedIds.add(c.id));
+            }
+            updateSelectionCounters();
+            renderTable();
+            showToast(`تم تحديد ${selectedIds.size} متقدم`);
+        }
+
+        function getFilteredCandidates() {
+            const q = document.getElementById('searchInput').value.toLowerCase().trim();
+            const stFilter = document.getElementById('statusFilter').value;
+            const secFilter = document.getElementById('sectorFilter').value;
+            const sentFilter = document.getElementById('sentFilter').value;
+
+            return candidates.filter(c => {
+                const matchQ = !q ||
+                    c.name.toLowerCase().includes(q) ||
+                    (c.email && c.email.toLowerCase().includes(q)) ||
+                    (c.phone && c.phone.includes(q)) ||
+                    (c.uni && c.uni.toLowerCase().includes(q));
+                const matchStatus = stFilter === 'all' || c.status === stFilter;
+                const matchSector = secFilter === 'all' || c.assignedSector === secFilter;
+                const matchSent = sentFilter === 'all' ||
+                    (sentFilter === 'unsent_email' && !c.emailed) ||
+                    (sentFilter === 'sent_email' && c.emailed);
+                return matchQ && matchStatus && matchSector && matchSent;
+            });
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('candidatesTbody');
+            tbody.innerHTML = '';
+            const filtered = getFilteredCandidates();
+
+            filtered.forEach((c, idx) => {
+                const total = calcTotal(c.nonTech, c.tech);
+                let scoreClass = 'score-na';
+                if (total !== null) {
+                    const num = parseFloat(total);
+                    scoreClass = num >= 7.5 ? 'score-high' : (num >= 6 ? 'score-mid' : 'score-low');
+                }
+
+                const isSelected = selectedIds.has(c.id);
+                const sectorOptions = SECTORS.map(s =>
+                    `<option value="${s.code}" ${c.assignedSector === s.code ? 'selected' : ''}>${s.code} Sector</option>`
+                ).join('');
+
+                const tr = document.createElement('tr');
+                if (isSelected) tr.className = 'selected-row';
+
+                tr.innerHTML = `
+                    <td style="text-align:center;">
+                        <input type="checkbox" class="row-checkbox" ${isSelected ? 'checked' : ''}
+                               onchange="toggleSelectRow(${c.id}, this.checked)">
+                    </td>
+                    <td style="font-weight:700; color:#64748B;">${idx + 1}</td>
+                    <td>
+                        <span class="candidate-name">${c.name}</span>
+                        <span class="candidate-uni">${c.uni || '-'}</span>
+                        <div>
+                            ${c.emailed ? '<span class="sent-badge"><i class="fa-solid fa-envelope-circle-check"></i> Email Sent</span>' : ''}
+                            ${c.waSent ? '<span class="wa-badge"><i class="fa-brands fa-whatsapp"></i> WA Sent</span>' : ''}
+                        </div>
+                    </td>
+                    <td>
+                        <input type="email" class="email-input" value="${c.email || ''}" placeholder="Add Email..."
+                               onchange="updateField(${c.id}, 'email', this.value)">
+                    </td>
+                    <td style="direction:ltr; text-align:right; font-family:'Roboto',sans-serif;">
+                        <span style="font-size:0.78rem;">${c.phone || ''}</span>
+                    </td>
+                    <td>
+                        <div class="sector-badge">1st: ${shortSector(c.pref1)}</div><br>
+                        <div class="sector-badge second">2nd: ${shortSector(c.pref2)}</div>
+                    </td>
+                    <td>
+                        <select class="assigned-select" onchange="updateField(${c.id}, 'assignedSector', this.value)">
+                            ${sectorOptions}
+                        </select>
+                    </td>
+                    <td><span class="score-pill ${scoreClass}">${total !== null ? total + ' / 10' : 'N/A'}</span></td>
+                    <td>
+                        <select class="status-select ${getStatusClass(c.status)}" onchange="updateStatus(${c.id}, this.value)">
+                            <option value="accepted" ${c.status === 'accepted' ? 'selected' : ''}>Accepted ✅</option>
+                            <option value="waiting list" ${c.status === 'waiting list' ? 'selected' : ''}>Waiting List ⏳</option>
+                            <option value="Rejected" ${c.status === 'Rejected' ? 'selected' : ''}>Rejected ❌</option>
+                            <option value="hold" ${c.status === 'hold' ? 'selected' : ''}>Hold ⏸️</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="notes-input" value="${c.notes || ''}" placeholder="ملاحظات..."
+                               onchange="updateField(${c.id}, 'notes', this.value)">
+                    </td>
+                    <td>
+                        <div style="display:flex; gap:6px;">
+                            <button class="icon-btn btn-mail" onclick="openSinglePreviewModal(${c.id}, 'email')" title="إرسال إيميل لهذا المتقدم فقط">
+                                <i class="fa-solid fa-envelope"></i>
+                            </button>
+                            <button class="icon-btn btn-wa" onclick="openSinglePreviewModal(${c.id}, 'whatsapp')" title="إرسال رسالة واتساب بالتمبليت لهذا المتقدم">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateField(id, field, value) {
+            const item = candidates.find(x => x.id === id);
+            if (item) {
+                item[field] = value.trim();
+                updateStats();
+                syncToCloud();
+            }
+        }
+
+        function updateStatus(id, newStatus) {
+            const item = candidates.find(x => x.id === id);
+            if (item) {
+                item.status = newStatus;
+                // إذا تم تحويله لمقبول ولم يُرسل له إيميل بعد، حدده تلقائياً لتسهيل الإرسال الفردي
+                if (newStatus === 'accepted' && !item.emailed) {
+                    selectedIds.add(item.id);
+                    updateSelectionCounters();
+                }
+                updateStats();
+                renderTable();
+                syncToCloud();
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('statTotal').innerText = candidates.length;
+            document.getElementById('statAccepted').innerText = candidates.filter(c => c.status === 'accepted').length;
+            document.getElementById('statWaiting').innerText = candidates.filter(c => c.status === 'waiting list').length;
+            document.getElementById('statRejected').innerText = candidates.filter(c => c.status === 'Rejected').length;
+            document.getElementById('statHold').innerText = candidates.filter(c => c.status === 'hold').length;
+        }
+
+        function shortSector(s) {
+            if (!s) return '-';
+            if (s.startsWith('BF')) return 'BF: Business & Finance';
+            if (s.startsWith('OSC')) return 'OSC & Digital Trans.';
+            if (s.startsWith('TE')) return 'TE: Technical & Eng.';
+            if (s.startsWith('MC')) return 'MC: Marketing & Comm.';
+            if (s.startsWith('SID')) return 'SID: Strategy & Dev.';
+            return s;
+        }
+
+        function calcTotal(nonTech, tech) {
+            const n = parseFloat(nonTech);
+            const t = parseFloat(tech);
+            if (isNaN(n) && isNaN(t)) return null;
+            return ((isNaN(n) ? 0 : n) + (isNaN(t) ? 0 : t)).toFixed(1).replace(/\.0$/, '');
+        }
+
+        function getStatusClass(st) {
+            if (st === 'accepted') return 'accepted';
+            if (st === 'waiting list') return 'waiting';
+            if (st === 'Rejected') return 'rejected';
+            return 'hold';
+        }
+
+        function getFullSectorName(code) {
+            const found = SECTORS.find(s => s.code === code);
+            return found ? found.label : code;
+        }
+
+        function getSectorWhatsAppLink(code) {
+            const el = document.getElementById('wa_' + code);
+            if (el && el.value.trim()) return el.value.trim();
+            return "[WhatsApp Group Link]";
+        }
+
+        function formatPhoneForWa(phone) {
+            const clean = (phone || '').replace(/[^0-9]/g, '');
+            if (!clean) return '';
+            return clean.startsWith('0') ? '2' + clean : clean;
+        }
+
+        function buildMessageForCandidate(candidate, channel, forcedMode, customSubj, customBody) {
+            const isAccepted = (forcedMode === 'auto' || !forcedMode)
+                ? (candidate.status === 'accepted')
+                : (forcedMode === 'accepted');
+
+            let rawSubject = "";
+            let rawBody = "";
+
+            if (channel === 'email') {
+                rawSubject = customSubj !== undefined ? customSubj : (isAccepted ? document.getElementById('accSubject').value : document.getElementById('rejSubject').value);
+                rawBody = customBody !== undefined ? customBody : (isAccepted ? document.getElementById('accBody').value : document.getElementById('rejBody').value);
+            } else {
+                rawBody = customBody !== undefined ? customBody : (isAccepted ? document.getElementById('waAccBody').value : document.getElementById('waRejBody').value);
+            }
+
+            const secCode = candidate.assignedSector || "BF";
+            const sectorFull = getFullSectorName(secCode);
+            const waLink = getSectorWhatsAppLink(secCode);
+
+            const replaceVars = (str) => (str || '')
+                .replace(/\{name\}/g, candidate.name)
+                .replace(/\{sector\}/g, sectorFull)
+                .replace(/\{whatsapp_link\}/g, waLink)
+                .replace(/\{university\}/g, candidate.uni || 'Cairo University');
+
+            return {
+                subject: replaceVars(rawSubject),
+                body: replaceVars(rawBody)
+            };
+        }
+
+        // Single Candidate Modal (Email or WhatsApp)
+        function openSinglePreviewModal(id, channel) {
+            const c = candidates.find(x => x.id === id);
+            if (!c) return;
+            activeSingleCandidateId = id;
+            currentChannel = channel;
+
+            const { subject, body } = buildMessageForCandidate(c, channel, 'auto');
+
+            document.getElementById('singlePreviewTitle').innerText = channel === 'email'
+                ? `إرسال إيميل فردي إلى: ${c.name}`
+                : `إرسال رسالة واتساب فردية إلى: ${c.name}`;
+
+            document.getElementById('previewEmailRow').style.display = channel === 'email' ? 'block' : 'none';
+            document.getElementById('previewSubjectRow').style.display = channel === 'email' ? 'block' : 'none';
+            document.getElementById('btnModalSendEmail').style.display = channel === 'email' ? 'inline-flex' : 'none';
+            document.getElementById('btnModalSendWa').style.display = channel === 'whatsapp' ? 'inline-flex' : 'none';
+
+            document.getElementById('previewToEmail').value = c.email || '';
+            document.getElementById('previewSubject').value = subject;
+            document.getElementById('previewBody').value = body;
+            document.getElementById('singlePreviewModal').classList.add('open');
+        }
+
+        function closeSinglePreviewModal() {
+            document.getElementById('singlePreviewModal').classList.remove('open');
+        }
+
+        async function sendSingleViaBackend() {
+            const to = document.getElementById('previewToEmail').value.trim();
+            if (!to) return alert('برجاء إدخال الإيميل أولاً.');
+            const subject = document.getElementById('previewSubject').value;
+            const body = document.getElementById('previewBody').value;
+
+            showToast('جاري إرسال الإيميل...');
+            const res = await apiCall({
+                action: 'send_emails',
+                token: sessionToken,
+                recipients: [{ email: to, subject: subject, body: body }]
+            });
+
+            if (res.status === 'success') {
+                const c = candidates.find(x => x.id === activeSingleCandidateId);
+                if (c) { c.email = to; c.emailed = true; }
+                renderTable();
+                syncToCloud();
+                closeSinglePreviewModal();
+                showToast('تم إرسال الإيميل الفردي بنجاح! 🎉');
+            }
+        }
+
+        function sendSingleWhatsAppNow() {
+            const c = candidates.find(x => x.id === activeSingleCandidateId);
+            if (!c) return;
+            const waNum = formatPhoneForWa(c.phone);
+            if (!waNum) return alert('لا يوجد رقم واتساب مسجل لهذا المتقدم.');
+            const body = document.getElementById('previewBody').value;
+
+            window.open(`https://wa.me/${waNum}?text=${encodeURIComponent(body)}`, '_blank');
+            c.waSent = true;
+            renderTable();
+            syncToCloud();
+            closeSinglePreviewModal();
+        }
+
+        // Selected Candidates Modal (Email or WhatsApp)
+        function openSelectedSendModal(channel) {
+            if (selectedIds.size === 0) {
+                return alert('برجاء تحديد شخص واحد على الأقل من علامة الصح ☑️ بجانب اسمه في الجدول (أو استخدم أزرار التحديد السريع فوق الجدول).');
+            }
+            currentChannel = channel;
+            waQueueIndex = 0;
+
+            const selectedList = candidates.filter(c => selectedIds.has(c.id));
+            document.getElementById('selectedModalTitle').innerText = channel === 'email'
+                ? `📧 إرسال إيميل للأشخاص المحددين فقط (${selectedList.length} متقدم)`
+                : `💬 إرسال رسائل واتساب للأشخاص المحددين (${selectedList.length} متقدم)`;
+
+            document.getElementById('bulkSubjectGroup').style.display = channel === 'email' ? 'block' : 'none';
+            document.getElementById('btnExecSelectedEmail').style.display = channel === 'email' ? 'inline-flex' : 'none';
+            document.getElementById('btnExecSelectedWa').style.display = channel === 'whatsapp' ? 'inline-flex' : 'none';
+            document.getElementById('waQueueProgress').innerText = `1 / ${selectedList.length}`;
+
+            loadBulkModalTemplateText();
+            renderSelectedRecipientList();
+            document.getElementById('selectedSendModal').classList.add('open');
+        }
+
+        function loadBulkModalTemplateText() {
+            const mode = document.getElementById('bulkTemplateModeSelect').value;
+            const isAcc = mode !== 'Rejected';
+            if (currentChannel === 'email') {
+                document.getElementById('bulkLiveSubject').value = isAcc ? document.getElementById('accSubject').value : document.getElementById('rejSubject').value;
+                document.getElementById('bulkLiveBody').value = isAcc ? document.getElementById('accBody').value : document.getElementById('rejBody').value;
+            } else {
+                document.getElementById('bulkLiveBody').value = isAcc ? document.getElementById('waAccBody').value : document.getElementById('waRejBody').value;
+            }
+        }
+
+        function renderSelectedRecipientList() {
+            const selectedList = candidates.filter(c => selectedIds.has(c.id));
+            const container = document.getElementById('selectedRecipientList');
+            container.innerHTML = '';
+
+            selectedList.forEach((c, i) => {
+                const div = document.createElement('div');
+                div.className = 'recipient-item';
+                div.innerHTML = `
+                    <div>
+                        <strong>${i + 1}. ${c.name}</strong>
+                        <span style="font-size:0.76rem; color:#64748B;">[${c.status} - ${c.assignedSector}]</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        ${currentChannel === 'email'
+                            ? `<input type="email" class="email-input" value="${c.email || ''}" placeholder="Add email..." onchange="updateField(${c.id}, 'email', this.value)">`
+                            : `<span style="direction:ltr; font-family:'Roboto'; font-size:0.82rem;">${c.phone || 'No Phone'}</span>
+                               <button class="btn-xs" onclick="sendDirectWaForCandidate(${c.id})"><i class="fa-brands fa-whatsapp"></i> إرسال</button>`
+                        }
+                        <button class="btn-xs" style="color:#DC2626;" onclick="toggleSelectRow(${c.id}, false); renderSelectedRecipientList();" title="استبعاد من الإرسال الحالي">✖</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function closeSelectedSendModal() {
+            document.getElementById('selectedSendModal').classList.remove('open');
+        }
+
+        async function executeSelectedEmailSend() {
+            const selectedList = candidates.filter(c => selectedIds.has(c.id) && c.email && c.email.includes('@'));
+            if (selectedList.length === 0) return alert('الأشخاص المحددين ليس لديهم بريد إلكتروني مسجل.');
+
+            const mode = document.getElementById('bulkTemplateModeSelect').value;
+            const customSubj = document.getElementById('bulkLiveSubject').value;
+            const customBody = document.getElementById('bulkLiveBody').value;
+
+            const recipients = selectedList.map(c => {
+                const content = mode === 'auto'
+                    ? buildMessageForCandidate(c, 'email', 'auto')
+                    : buildMessageForCandidate(c, 'email', mode, customSubj, customBody);
+                return { email: c.email, subject: content.subject, body: content.body };
+            });
+
+            showToast(`جاري إرسال الإيميلات لـ ${recipients.length} متقدم محدد...`);
+            const res = await apiCall({
+                action: 'send_emails',
+                token: sessionToken,
+                recipients: recipients
+            });
+
+            if (res.status === 'success') {
+                selectedList.forEach(c => {
+                    c.emailed = true;
+                    selectedIds.delete(c.id);
+                });
+                updateSelectionCounters();
+                renderTable();
+                syncToCloud();
+                closeSelectedSendModal();
+                showToast(`تم إرسال ${res.sent} إيميل للأشخاص المحددين بنجاح! 🎉`);
+            }
+        }
+
+        function sendDirectWaForCandidate(id) {
+            const c = candidates.find(x => x.id === id);
+            if (!c) return;
+            const waNum = formatPhoneForWa(c.phone);
+            if (!waNum) return alert('لا يوجد رقم هاتف');
+            const mode = document.getElementById('bulkTemplateModeSelect').value;
+            const customBody = document.getElementById('bulkLiveBody').value;
+            const content = mode === 'auto'
+                ? buildMessageForCandidate(c, 'whatsapp', 'auto')
+                : buildMessageForCandidate(c, 'whatsapp', mode, '', customBody);
+
+            window.open(`https://wa.me/${waNum}?text=${encodeURIComponent(content.body)}`, '_blank');
+            c.waSent = true;
+            renderTable();
+            syncToCloud();
+        }
+
+        function startWhatsAppQueueNext() {
+            const selectedList = candidates.filter(c => selectedIds.has(c.id) && formatPhoneForWa(c.phone));
+            if (selectedList.length === 0) return alert('لا يوجد أرقام واتساب للأشخاص المحددين.');
+
+            if (waQueueIndex >= selectedList.length) {
+                alert('تم المرور على جميع الأشخاص المحددين بنجاح! 🎉');
+                closeSelectedSendModal();
+                return;
+            }
+
+            const c = selectedList[waQueueIndex];
+            sendDirectWaForCandidate(c.id);
+            waQueueIndex++;
+
+            if (waQueueIndex < selectedList.length) {
+                document.getElementById('waQueueProgress').innerText = `التالي (${waQueueIndex + 1} / ${selectedList.length}: ${selectedList[waQueueIndex].name.split(' ')[0]})`;
+            } else {
+                document.getElementById('waQueueProgress').innerText = `تم الانتهاء ✅`;
+            }
+        }
+
+        function filterByStatus(status) {
+            document.getElementById('statusFilter').value = status;
+            switchTab('candidates', document.getElementById('tabBtnCandidates'));
+            renderTable();
+        }
+
+        function switchTab(tabName, btnEl) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.getElementById('view-' + tabName).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+        }
+
+        function insertVar(textareaId, variable) {
+            const ta = document.getElementById(textareaId);
+            const start = ta.selectionStart;
+            const end = ta.selectionEnd;
+            ta.value = ta.value.substring(0, start) + variable + ta.value.substring(end);
+            ta.focus();
         }
 
         function renderAllowedEmails() {
@@ -903,298 +1484,9 @@ Vice President | ESME Cairo University Student Chapter</textarea>
             }
         }
 
-        function updateStats() {
-            document.getElementById('statTotal').innerText = candidates.length;
-            document.getElementById('statAccepted').innerText = candidates.filter(c => c.status === 'accepted').length;
-            document.getElementById('statWaiting').innerText = candidates.filter(c => c.status === 'waiting list').length;
-            document.getElementById('statRejected').innerText = candidates.filter(c => c.status === 'Rejected').length;
-            document.getElementById('statHold').innerText = candidates.filter(c => c.status === 'hold').length;
-        }
-
-        function shortSector(s) {
-            if (!s) return '-';
-            if (s.startsWith('BF')) return 'BF: Business & Finance';
-            if (s.startsWith('OSC')) return 'OSC & Digital Trans.';
-            if (s.startsWith('TE')) return 'TE: Technical & Eng.';
-            if (s.startsWith('MC')) return 'MC: Marketing & Comm.';
-            if (s.startsWith('SID')) return 'SID: Strategy & Dev.';
-            return s;
-        }
-
-        function calcTotal(nonTech, tech) {
-            const n = parseFloat(nonTech);
-            const t = parseFloat(tech);
-            if (isNaN(n) && isNaN(t)) return null;
-            return ((isNaN(n) ? 0 : n) + (isNaN(t) ? 0 : t)).toFixed(1).replace(/\.0$/, '');
-        }
-
-        function getStatusClass(st) {
-            if (st === 'accepted') return 'accepted';
-            if (st === 'waiting list') return 'waiting';
-            if (st === 'Rejected') return 'rejected';
-            return 'hold';
-        }
-
-        function renderTable() {
-            const tbody = document.getElementById('candidatesTbody');
-            const q = document.getElementById('searchInput').value.toLowerCase().trim();
-            const stFilter = document.getElementById('statusFilter').value;
-            const secFilter = document.getElementById('sectorFilter').value;
-
-            tbody.innerHTML = '';
-
-            const filtered = candidates.filter(c => {
-                const matchQ = !q ||
-                    c.name.toLowerCase().includes(q) ||
-                    (c.email && c.email.toLowerCase().includes(q)) ||
-                    (c.phone && c.phone.includes(q)) ||
-                    (c.uni && c.uni.toLowerCase().includes(q));
-                const matchStatus = stFilter === 'all' || c.status === stFilter;
-                const matchSector = secFilter === 'all' || c.assignedSector === secFilter;
-                return matchQ && matchStatus && matchSector;
-            });
-
-            filtered.forEach((c, idx) => {
-                const total = calcTotal(c.nonTech, c.tech);
-                let scoreClass = 'score-na';
-                if (total !== null) {
-                    const num = parseFloat(total);
-                    scoreClass = num >= 7.5 ? 'score-high' : (num >= 6 ? 'score-mid' : 'score-low');
-                }
-
-                const cleanPhone = (c.phone || '').replace(/[^0-9]/g, '');
-                const waNumber = cleanPhone.startsWith('0') ? '2' + cleanPhone : cleanPhone;
-
-                const sectorOptions = SECTORS.map(s =>
-                    `<option value="${s.code}" ${c.assignedSector === s.code ? 'selected' : ''}>${s.code} Sector</option>`
-                ).join('');
-
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="font-weight:700; color:#64748B;">${idx + 1}</td>
-                    <td>
-                        <span class="candidate-name">${c.name}</span>
-                        <span class="candidate-uni">${c.uni || '-'}</span>
-                        ${c.emailed ? '<br><span class="sent-badge"><i class="fa-solid fa-check"></i> Email Sent</span>' : ''}
-                    </td>
-                    <td>
-                        <input type="email" class="email-input" value="${c.email || ''}" placeholder="Add Email..."
-                               onchange="updateField(${c.id}, 'email', this.value)">
-                    </td>
-                    <td style="direction:ltr; text-align:right; font-family:'Roboto',sans-serif;">
-                        <a href="https://wa.me/${waNumber}" target="_blank" class="icon-btn btn-wa"><i class="fa-brands fa-whatsapp"></i></a>
-                        <span style="font-size:0.78rem; margin-right:4px;">${c.phone || ''}</span>
-                    </td>
-                    <td>
-                        <div class="sector-badge">1st: ${shortSector(c.pref1)}</div><br>
-                        <div class="sector-badge second">2nd: ${shortSector(c.pref2)}</div>
-                    </td>
-                    <td>
-                        <select class="assigned-select" onchange="updateField(${c.id}, 'assignedSector', this.value)">
-                            ${sectorOptions}
-                        </select>
-                    </td>
-                    <td><span class="score-pill ${scoreClass}">${total !== null ? total + ' / 10' : 'N/A'}</span></td>
-                    <td>
-                        <select class="status-select ${getStatusClass(c.status)}" onchange="updateStatus(${c.id}, this.value)">
-                            <option value="accepted" ${c.status === 'accepted' ? 'selected' : ''}>Accepted ✅</option>
-                            <option value="waiting list" ${c.status === 'waiting list' ? 'selected' : ''}>Waiting List ⏳</option>
-                            <option value="Rejected" ${c.status === 'Rejected' ? 'selected' : ''}>Rejected ❌</option>
-                            <option value="hold" ${c.status === 'hold' ? 'selected' : ''}>Hold ⏸️</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="notes-input" value="${c.notes || ''}" placeholder="ملاحظات..."
-                               onchange="updateField(${c.id}, 'notes', this.value)">
-                    </td>
-                    <td>
-                        <button class="icon-btn btn-mail" onclick="openSinglePreviewModal(${c.id})" title="معاينة وتعديل الإيميل">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function updateField(id, field, value) {
-            const item = candidates.find(x => x.id === id);
-            if (item) {
-                item[field] = value.trim();
-                updateStats();
-                syncToCloud();
-            }
-        }
-
-        function updateStatus(id, newStatus) {
-            const item = candidates.find(x => x.id === id);
-            if (item) {
-                item.status = newStatus;
-                updateStats();
-                renderTable();
-                syncToCloud();
-            }
-        }
-
-        function filterByStatus(status) {
-            document.getElementById('statusFilter').value = status;
-            switchTab('candidates', document.getElementById('tabBtnCandidates'));
-            renderTable();
-        }
-
-        function switchTab(tabName, btnEl) {
-            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
-            document.getElementById('view-' + tabName).classList.add('active');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
-        }
-
-        function insertVar(textareaId, variable) {
-            const ta = document.getElementById(textareaId);
-            const start = ta.selectionStart;
-            const end = ta.selectionEnd;
-            ta.value = ta.value.substring(0, start) + variable + ta.value.substring(end);
-            ta.focus();
-        }
-
-        function getFullSectorName(code) {
-            const found = SECTORS.find(s => s.code === code);
-            return found ? found.label : code;
-        }
-
-        function getSectorWhatsAppLink(code) {
-            const el = document.getElementById('wa_' + code);
-            if (el && el.value.trim()) return el.value.trim();
-            return "[WhatsApp Group Link - Please Paste Here]";
-        }
-
-        function buildEmailContent(candidate, mode, customSubj, customBody) {
-            const isAccepted = (mode || candidate.status) === 'accepted';
-            const rawSubject = customSubj !== undefined ? customSubj : (isAccepted ? document.getElementById('accSubject').value : document.getElementById('rejSubject').value);
-            const rawBody = customBody !== undefined ? customBody : (isAccepted ? document.getElementById('accBody').value : document.getElementById('rejBody').value);
-
-            const secCode = candidate.assignedSector || "BF";
-            const sectorFull = getFullSectorName(secCode);
-            const waLink = getSectorWhatsAppLink(secCode);
-
-            const replaceVars = (str) => str
-                .replace(/\{name\}/g, candidate.name)
-                .replace(/\{sector\}/g, sectorFull)
-                .replace(/\{whatsapp_link\}/g, waLink)
-                .replace(/\{university\}/g, candidate.uni || 'Cairo University');
-
-            return { subject: replaceVars(rawSubject), body: replaceVars(rawBody) };
-        }
-
-        function openSinglePreviewModal(id) {
-            const c = candidates.find(x => x.id === id);
-            if (!c) return;
-            activeSingleCandidateId = id;
-            const mode = c.status === 'accepted' ? 'accepted' : 'Rejected';
-            const { subject, body } = buildEmailContent(c, mode);
-
-            document.getElementById('previewToEmail').value = c.email || '';
-            document.getElementById('previewSubject').value = subject;
-            document.getElementById('previewBody').value = body;
-            document.getElementById('singlePreviewModal').classList.add('open');
-        }
-
-        function closeSinglePreviewModal() {
-            document.getElementById('singlePreviewModal').classList.remove('open');
-        }
-
-        async function sendSingleViaBackend() {
-            const to = document.getElementById('previewToEmail').value.trim();
-            if (!to) return alert('Please enter recipient email.');
-            const subject = document.getElementById('previewSubject').value;
-            const body = document.getElementById('previewBody').value;
-
-            const res = await apiCall({
-                action: 'send_emails',
-                token: sessionToken,
-                recipients: [{ email: to, subject: subject, body: body }]
-            });
-
-            if (res.status === 'success') {
-                const c = candidates.find(x => x.id === activeSingleCandidateId);
-                if (c) { c.email = to; c.emailed = true; }
-                renderTable();
-                syncToCloud();
-                closeSinglePreviewModal();
-                showToast('تم إرسال الإيميل بنجاح! 🎉');
-            }
-        }
-
-        function confirmSingleSendGmail() {
-            const to = document.getElementById('previewToEmail').value.trim();
-            if (!to) return alert('Please enter recipient email.');
-            const subject = document.getElementById('previewSubject').value;
-            const body = document.getElementById('previewBody').value;
-            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
-            closeSinglePreviewModal();
-        }
-
-        function openBulkModal(mode) {
-            currentBulkMode = mode;
-            const list = candidates.filter(c => c.status === mode);
-            const withEmail = list.filter(c => c.email && c.email.includes('@'));
-
-            const isAcc = mode === 'accepted';
-            document.getElementById('bulkLiveSubject').value = isAcc ? document.getElementById('accSubject').value : document.getElementById('rejSubject').value;
-            document.getElementById('bulkLiveBody').value = isAcc ? document.getElementById('accBody').value : document.getElementById('rejBody').value;
-
-            document.getElementById('bulkModalSummary').innerHTML = `إجمالي الفئة: <strong>${list.length}</strong> | جاهز للإرسال الفوري: <strong>${withEmail.length}</strong>`;
-
-            const container = document.getElementById('bulkRecipientList');
-            container.innerHTML = '';
-            list.forEach(c => {
-                const div = document.createElement('div');
-                div.className = 'recipient-item';
-                div.innerHTML = `
-                    <strong>${c.name} (${c.assignedSector})</strong>
-                    <input type="email" class="email-input" value="${c.email || ''}" placeholder="Add email..."
-                           onchange="updateField(${c.id}, 'email', this.value);">
-                `;
-                container.appendChild(div);
-            });
-            document.getElementById('bulkModal').classList.add('open');
-        }
-
-        function closeBulkModal() {
-            document.getElementById('bulkModal').classList.remove('open');
-        }
-
-        async function executeBulkBackendSend() {
-            const list = candidates.filter(c => c.status === currentBulkMode && c.email && c.email.includes('@'));
-            if (list.length === 0) return alert('لا يوجد إيميلات مسجلة في هذه الفئة.');
-
-            const subjTpl = document.getElementById('bulkLiveSubject').value;
-            const bodyTpl = document.getElementById('bulkLiveBody').value;
-
-            const recipients = list.map(c => {
-                const content = buildEmailContent(c, currentBulkMode, subjTpl, bodyTpl);
-                return { email: c.email, subject: content.subject, body: content.body };
-            });
-
-            showToast('جاري إرسال الإيميلات المخصصة...');
-            const res = await apiCall({
-                action: 'send_emails',
-                token: sessionToken,
-                recipients: recipients
-            });
-
-            if (res.status === 'success') {
-                list.forEach(c => c.emailed = true);
-                renderTable();
-                syncToCloud();
-                closeBulkModal();
-                showToast(`تم إرسال ${res.sent} إيميل مخصص بنجاح! 🎉`);
-            }
-        }
-
         function exportToCSV() {
-            const headers = ["ID", "Full Name", "University", "Whatsapp Number", "Email", "Assigned Sector", "Status", "Notes"];
-            const rows = candidates.map(c => [c.id, `"${c.name}"`, `"${c.uni}"`, `"${c.phone}"`, `"${c.email}"`, c.assignedSector, c.status, `"${c.notes}"`]);
+            const headers = ["ID", "Full Name", "University", "Whatsapp Number", "Email", "Assigned Sector", "Status", "Email Sent", "WA Sent", "Notes"];
+            const rows = candidates.map(c => [c.id, `"${c.name}"`, `"${c.uni}"`, `"${c.phone}"`, `"${c.email}"`, c.assignedSector, c.status, c.emailed ? "Yes" : "No", c.waSent ? "Yes" : "No", `"${c.notes}"`]);
             const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
             const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
             const a = document.createElement("a");
